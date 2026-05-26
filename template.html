@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PÉNÉLOPE × MONOPRIX · AO 2027</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+body{
+  font-family:'Inter',Arial,sans-serif;
+  background:#1a1a1a;
+  color:#2A141A;
+  overflow-x:hidden;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* Slide container */
+.slide{width:297mm;height:210mm;position:relative;overflow:hidden;page-break-after:always;margin:16px auto;box-sizing:border-box}
+.slide-light{background:#FAF6F3;color:#2A141A}
+.slide-dark{background:#6D1E31;color:#E4D0CF}
+
+/* Shared footer */
+.footer{position:absolute;bottom:5mm;left:8mm;right:8mm;display:flex;justify-content:space-between;font-family:Arial,sans-serif;font-size:7pt;color:#AA999D}
+.slide-dark .footer{color:rgba(255,255,255,.3)}
+
+/* Navigation */
+.nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);padding:6px 16px;border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.15);font-size:11px;color:#6D1E31;user-select:none}
+.nav button{background:none;border:none;font-size:18px;cursor:pointer;color:#6D1E31;padding:0 4px}
+.nav button:hover{color:#B0894F}
+.nav span{min-width:60px;text-align:center}
+
+/* Print */
+@media print{
+  body{background:white}
+  .nav{display:none!important}
+  .slide{margin:0;box-shadow:none;page-break-after:always}
+}
+
+@media screen{.slide{scroll-snap-align:start}}
+</style>
+</head>
+<body>
+
+<div class="nav" id="nav">
+  <button onclick="prev()">◀</button>
+  <span id="counter">1 / 107</span>
+  <button onclick="next()">▶</button>
+</div>
+
+<!-- BATCH 1: Slides 1–36 -->
+PLACEHOLDER_BATCH1
+
+<!-- BATCH 2: Slides 37–70 -->
+PLACEHOLDER_BATCH2
+
+<!-- BATCH 3: Slides 71–107 -->
+PLACEHOLDER_BATCH3
+
+<script>
+let current=0;
+const slides=document.querySelectorAll('.slide');
+const total=slides.length;
+const counter=document.getElementById('counter');
+function show(n){
+  if(n<0)n=0;if(n>=total)n=total-1;
+  slides[n].scrollIntoView({behavior:'smooth',block:'start'});
+  counter.textContent=(n+1)+' / '+total;
+  current=n;
+}
+function next(){show(current+1)}
+function prev(){show(current-1)}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}
+  if(e.key==='ArrowLeft'){e.preventDefault();prev()}
+  if(e.key==='Home'){e.preventDefault();show(0)}
+  if(e.key==='End'){e.preventDefault();show(total-1)}
+});
+</script>
+</body>
+</html>
