@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AO Monoprix 2027 — Réponse Pénélop'</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bordeaux:#7A2639;--bordeaux-dk:#5E1A2A;--bordeaux-deep:#3D1220;--bordeaux-lt:#9E4A5A;--rose:#C9A8A0;--rose-lt:#E3CEC8;--beige:#F5EDE8;--cream:#FAF6F3;--white:#FFF;--gold:#B8965A;--gold-lt:#D4B87A;--text-dark:#2D1A1F;--text-body:#4A3540;--text-muted:#8A7580}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text-body);background:#FFF;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--bordeaux-lt),var(--gold));z-index:1001;width:0;transition:width .12s}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+#page-indicator{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:5px}
+#page-indicator .dot{width:5px;height:5px;border-radius:50%;background:rgba(122,38,57,.12);transition:all .3s;cursor:pointer}
+#page-indicator .dot.active{background:var(--gold);height:16px;border-radius:3px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:.8rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(250,246,243,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(122,38,57,.06)}
+nav .brand{font-family:'Playfair Display',serif;font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bordeaux);text-decoration:none;opacity:0;transition:opacity .3s}
+nav.scrolled .brand{opacity:1}
+nav .brand span{color:var(--gold)}
+nav .confidential{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(201,168,160,.4);border-radius:20px;padding:.15rem .6rem}
+
+/* COVER */
+.cover{display:flex;flex-direction:column;justify-content:flex-end;padding:0 8vw 8vh;min-height:100vh;position:relative;overflow:hidden}
+.cover-bg{position:absolute;inset:0;background:url('assets/images/slide001_img00.jpg') center/cover no-repeat;z-index:0;transform:scale(1.05);transition:transform 20s linear}
+.cover:hover .cover-bg{transform:scale(1.15)}
+.cover-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(61,18,32,.94) 0%,rgba(122,38,57,.78) 40%,rgba(61,18,32,.88) 100%)}
+.cover .top-bar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:2rem 8vw;z-index:3}
+.cover .top-bar .logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.cover .top-bar .meta{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);text-align:right;line-height:2.2}
+.cover .gold-line{width:50px;height:2px;background:var(--gold);margin-bottom:1.5rem;position:relative;z-index:2;opacity:0;animation:cr .8s ease .2s forwards}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:700;line-height:1.08;margin-bottom:1rem;position:relative;z-index:2;color:#fff;opacity:0;transform:translateY(35px);animation:cr .9s ease .4s forwards}
+.cover h1 em{font-style:italic;color:var(--gold-lt)}
+.cover .tagline{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2vw,1.25rem);font-style:italic;color:var(--rose);margin-bottom:2.5rem;position:relative;z-index:2;opacity:0;animation:cr .9s ease .7s forwards}
+.cover .bottom-line{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:2;opacity:0;animation:cr .9s ease 1s forwards}
+.cover .bottom-line .info{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.04em;line-height:2.2}
+.cover .bottom-line .info strong{color:rgba(255,255,255,.7)}
+.cover .bottom-line .date{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:#fff}
+.cover .scroll-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:cr .8s ease 1.3s forwards}
+.cover .scroll-hint span{display:block;width:1px;height:28px;background:linear-gradient(to bottom,var(--rose),transparent);margin:0 auto .3rem}
+.cover .scroll-hint small{font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose)}
+@keyframes cr{to{opacity:1;transform:translateY(0)}}
+
+/* SECTION TYPES */
+.content-section{padding:5vh 8vw;max-width:1400px;margin:0 auto}
+.dark-section{background:var(--bordeaux);color:#fff;padding:5vh 8vw;position:relative;overflow:hidden}
+.dark-section::before{content:'';position:absolute;top:-50%;right:-20%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(184,150,90,.04) 0%,transparent 70%);pointer-events:none}
+
+/* HERO BAND */
+.hero-band{position:relative;height:36vh;min-height:280px;overflow:hidden}
+.hero-band img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.hero-band::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(61,18,32,.3) 0%,rgba(61,18,32,.75) 60%,rgba(61,18,32,.95) 100%)}
+.hero-band::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);z-index:3}
+.hero-band .hero-text{position:absolute;bottom:3rem;left:8vw;z-index:2;width:65%}
+.hero-band .overline{font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.5rem}
+.hero-band h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;color:#fff;line-height:1.2}
+.hero-band h2 em{color:var(--rose-lt);font-style:italic}
+
+/* SECTION HEADER */
+.section-header{margin-bottom:2.5rem;position:relative}
+.section-header .section-num{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:700;color:rgba(122,38,57,.04);position:absolute;top:-1.5rem;left:-.5rem;line-height:1;pointer-events:none}
+.section-header .overline{font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:700;color:var(--text-dark);line-height:1.18;margin-bottom:.6rem}
+.section-header h2 em{font-style:italic;color:var(--bordeaux)}
+.section-header .subtitle{font-size:.88rem;color:var(--text-muted);max-width:600px;line-height:1.7}
+.dark-section .section-header h2{color:#fff}
+.dark-section .section-header h2 em{color:var(--rose-lt)}
+.dark-section .section-header .subtitle{color:rgba(255,255,255,.5)}
+.dark-section .section-header .overline{color:var(--gold-lt)}
+
+/* COMPONENTS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.2rem}
+.stat{text-align:center;padding:1.8rem 1rem;background:#fff;border-radius:10px;border:1px solid rgba(122,38,57,.04);transition:all .3s}
+.stat:hover{border-color:var(--gold);transform:translateY(-2px)}
+.stat .value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bordeaux);line-height:1}
+.stat .label{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.5rem;line-height:1.4}
+.dark-section .stat{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section .stat .value{color:var(--gold-lt)}
+.dark-section .stat .label{color:rgba(255,255,255,.4)}
+
+.pillar{display:flex;gap:1.2rem;align-items:flex-start;padding:1.5rem;border-radius:10px;background:#fff;border:1px solid rgba(122,38,57,.04);transition:all .3s}
+.pillar:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(122,38,57,.05)}
+.pillar .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);flex-shrink:0;width:38px;text-align:center}
+.pillar .content h4{font-family:'Playfair Display',serif;font-size:.92rem;font-weight:700;color:var(--text-dark);margin-bottom:.25rem}
+.pillar .content p{font-size:.8rem;color:var(--text-body);line-height:1.55}
+
+.card{background:#fff;border-radius:14px;padding:2rem;border:1px solid rgba(122,38,57,.05);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(122,38,57,.07)}
+.card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:.4rem}
+.card p{font-size:.82rem;color:var(--text-body);line-height:1.6}
+.card .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.3rem}
+
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.grid-6{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+
+.quote-block{position:relative;padding:2rem 2rem 2rem 3rem;margin:2rem 0}
+.quote-block::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(to bottom,var(--gold),var(--bordeaux-lt))}
+.quote-block::after{content:'\201C';position:absolute;top:.1rem;left:1rem;font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);line-height:1}
+.quote-block p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--text-dark);line-height:1.5}
+
+.full-width-quote{padding:6vh 8vw;text-align:center;position:relative}
+.full-width-quote::before{content:'\201C';font-family:'Playfair Display',serif;font-size:5rem;color:rgba(184,150,90,.15);position:absolute;top:0;left:50%;transform:translateX(-50%)}
+.full-width-quote p{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:var(--text-dark);line-height:1.5;max-width:750px;margin:0 auto}
+.dark-section .full-width-quote p{color:#fff}
+
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:420px}
+.split img{width:100%;height:100%;object-fit:cover}
+.split-content{padding:3rem;display:flex;flex-direction:column;justify-content:center}
+
+.promise-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid rgba(122,38,57,.05)}
+.promise-item:last-child{border-bottom:none}
+.promise-item .num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:.85rem;flex-shrink:0;width:8px}
+.promise-item h4{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:var(--text-dark);margin-bottom:.15rem}
+.promise-item p{font-size:.78rem;color:var(--text-body);line-height:1.5}
+
+.slide-counter{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-align:right;margin-top:1.5rem;padding-top:1rem;border-top:1px solid rgba(122,38,57,.06)}
+.dark-section .slide-counter{color:rgba(255,255,255,.15);border-color:rgba(255,255,255,.06)}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* KPI row for slide 5 */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:2rem 0}
+.kpi-box{text-align:center;padding:2rem 1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px}
+.kpi-box .kpi-label{font-size:.5rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.kpi-box .kpi-val{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:#fff;line-height:1}
+.kpi-box .kpi-desc{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:.6rem;line-height:1.5}
+
+/* PRINT — A4 landscape */
+@media print{
+  #progress,#page-indicator,nav,.scroll-hint{display:none!important}
+  body::after{display:none!important}
+  .cover,.content-section,.dark-section,.hero-band,.full-width-quote{break-after:page;page-break-after:always}
+  .cover{min-height:210mm;height:210mm}
+  .content-section,.dark-section{padding:15mm 20mm}
+  .reveal{opacity:1!important;transform:none!important}
+  .cover-bg{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+<div id="page-indicator"></div>
+<nav id="main-nav">
+  <a href="#" class="brand">PÉNÉLOPE <span>×</span> MONOPRIX</a>
+  <span class="confidential">🔒 Confidentiel</span>
+</nav>
+
+<!-- ========== SLIDE 1 — COVER ========== -->
+<section class="cover" id="s1">
+  <div class="cover-bg"></div>
+  <div class="top-bar">
+    <div class="logo">PÉNÉLOPE</div>
+    <div class="meta">Appel d'offres · Prestation conseil beauté<br>Monoprix · 2027</div>
+  </div>
+  <div class="gold-line"></div>
+  <h1>La beauté,<br><em>autrement.</em></h1>
+  <div class="tagline">Mémoire de renouvellement pour le compte Monoprix Beauté.</div>
+  <div class="bottom-line">
+    <div class="info"><strong>PÉNÉLOPE</strong> · Remise via NeoGrid · 29 mai 2026</div>
+    <div class="date">2027</div>
+  </div>
+  <div class="scroll-hint"><span></span><small>Défiler</small></div>
+</section>
+
+<!-- ========== SLIDE 2 — SOMMAIRE ========== -->
+<section class="content-section" id="s2">
+  <div class="section-header reveal">
+    <div class="section-num">§</div>
+    <div class="overline">PRÉAMBULE · SOMMAIRE</div>
+    <h2>Le parcours, <em>en neuf temps.</em></h2>
+    <div class="subtitle">Un fil unique : la conseillère comme levier de transformation, de la conviction au déploiement.</div>
+  </div>
+
+  <div style="display:flex;gap:3rem;margin-bottom:2rem" class="reveal">
+    <div style="text-align:center">
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)">9</div>
+      <div style="font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">parties</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)">107</div>
+      <div style="font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">slides</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold)">1</div>
+      <div style="font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">fil conducteur</div>
+    </div>
+  </div>
+
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num" style="font-style:italic">I</div><div class="content"><h4>Notre conviction pour Monoprix 2027</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">II</div><div class="content"><h4>Ce que Monoprix veut réussir</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">III</div><div class="content"><h4>Pourquoi Pénélope, l'évidence</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">IV</div><div class="content"><h4>Le conseil beauté — notre méthode signature</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">V</div><div class="content"><h4>Le capital humain, notre différenciateur</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">VI</div><div class="content"><h4>Le pilotage de la performance</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">VII</div><div class="content"><h4>L'innovation au cœur de la performance</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">VIII</div><div class="content"><h4>L'accompagnement de la transformation</h4></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">IX</div><div class="content"><h4>Nos engagements & le déploiement</h4></div></div>
+  </div>
+  <div class="slide-counter">2 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 3 — ÉDITO ========== -->
+<section class="content-section" id="s3" style="padding:0;max-width:100%">
+  <div class="split reveal">
+    <img src="assets/images/slide007_img00.jpg" alt="" style="min-height:420px">
+    <div class="split-content" style="background:var(--cream)">
+      <div class="overline" style="font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem">PRÉAMBULE · ÉDITO</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--text-dark);line-height:1.15;margin-bottom:1.2rem">Continuer à mériter<br><em style="color:var(--bordeaux)">votre</em> confiance.</h2>
+      <p style="font-size:.88rem;color:var(--text-body);line-height:1.75;margin-bottom:1.5rem"><strong style="color:var(--bordeaux)">Treize années.</strong> Treize années à apprendre vos magasins, vos équipes, vos clientes — et à transformer cette connaissance en performance. Aujourd'hui, Monoprix écrit un nouveau chapitre beauté. Nous voulons l'écrire avec vous.</p>
+      <div class="quote-block" style="margin:0 0 1.5rem 0;padding:1.5rem 1.5rem 1.5rem 2.5rem">
+        <p style="font-size:1rem">Le partenariat ne se renouvelle pas. Il se mérite, chaque jour.</p>
+      </div>
+      <div style="display:flex;gap:2.5rem;margin-bottom:1.5rem">
+        <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold)">13 ans</div><div style="font-size:.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">de partenariat continu</div></div>
+        <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold)">120</div><div style="font-size:.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">conseillères en poste (CDC)</div></div>
+        <div><div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold)">87</div><div style="font-size:.58rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em">magasins animés</div></div>
+      </div>
+      <div style="font-size:.75rem;color:var(--text-muted)"><strong style="color:var(--bordeaux)">Pénélope · Direction du compte Monoprix</strong><br>Jayne Fernandes — Directrice de marché</div>
+    </div>
+  </div>
+  <div style="text-align:right;padding:.8rem 3rem;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);border-top:1px solid rgba(122,38,57,.06)">3 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 4 — SYNTHÈSE EXÉCUTIVE 1/2 ========== -->
+<section class="content-section" id="s4">
+  <div class="section-header reveal">
+    <div class="section-num">§</div>
+    <div class="overline">PRÉAMBULE · SYNTHÈSE EXÉCUTIVE · 1/2</div>
+    <h2>Notre proposition, <em>en un regard.</em></h2>
+  </div>
+  <div class="grid-2 reveal">
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Un conseil signature</h3><p>Une grammaire commerciale en 5 phases, du savoir-être au make-up flash.</p></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Un capital humain</h3><p>Recrutement, école intégrée, segmentation des talents, volantes CDI.</p></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Un pilotage transparent</h3><p>KPIs lisibles, reporting J+10, gouvernance co-construite avec Monoprix.</p></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Une innovation utile</h3><p>Terminal sécurisé, Dashboard Crystal temps réel, pilotes mesurés.</p></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Un accompagnement</h3><p>Remodeling, MDD, plan prix, événementiel — magasin par magasin.</p></div>
+    <div class="card" style="border-top:3px solid var(--gold)"><div class="num">§</div><h3>Une continuité totale</h3><p>Dès J+1, rien ne s'arrête : équipes, outils et priorités déjà en place.</p></div>
+  </div>
+  <div class="slide-counter">4 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 5 — SYNTHÈSE 2/2 (KPIs) ========== -->
+<section class="dark-section" id="s5">
+  <div class="section-header reveal" style="text-align:center;max-width:700px;margin:0 auto 3rem">
+    <div class="overline">PRÉAMBULE · SYNTHÈSE EXÉCUTIVE · 2/2 · NOS PREUVES DE PERFORMANCE</div>
+    <h2>Quatre indicateurs de valeur, <em>au cœur de notre engagement.</em></h2>
+  </div>
+  <div class="kpi-row reveal">
+    <div class="kpi-box">
+      <div class="kpi-label">Performance</div>
+      <div class="kpi-val">+4 pts</div>
+      <div class="kpi-desc">de CA a minima sur les magasins animés vs non animés — notre socle mesurable.</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Fidélité</div>
+      <div class="kpi-val">+6 à 8</div>
+      <div class="kpi-desc">conseils qualifiés / jour, convertis en panier et en enrôlement fidélité.</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Réactivité</div>
+      <div class="kpi-val">J+10</div>
+      <div class="kpi-desc">reporting Top 30 livré chaque mois, magasin par magasin.</div>
+    </div>
+    <div class="kpi-box">
+      <div class="kpi-label">Continuité</div>
+      <div class="kpi-val">13 ans</div>
+      <div class="kpi-desc">d'expertise déjà installée — zéro coût de transition pour Monoprix.</div>
+    </div>
+  </div>
+  <div class="reveal" style="text-align:center;font-size:.78rem;color:rgba(255,255,255,.35);font-style:italic;margin-top:1rem">Les onze engagements complets (présence, turnover, formation, séminaire ≤ 65 K€) sont consolidés en COPIL Pénélope et détaillés au Vol. IX.</div>
+  <div class="slide-counter">5 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 6 — LA DÉCISION ========== -->
+<section class="dark-section" id="s6" style="background:var(--bordeaux-deep)">
+  <div style="max-width:800px;margin:0 auto;text-align:center;padding:4vh 0" class="reveal">
+    <div class="overline">PRÉAMBULE · LA DÉCISION EN TROIS LIGNES</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:2rem">Aucun concurrent ne part<br><em style="color:var(--rose-lt)">avec cette longueur d'avance.</em></h2>
+    <p style="font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.7">13 années d'historique opérationnel · 120 conseillères déjà en poste · une école de formation intégrée. Le seul candidat qui n'impose aucune transition à Monoprix.</p>
+  </div>
+  <div class="slide-counter">6 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 7 — PARTIE UN DIVIDER ========== -->
+<section class="dark-section" id="s7">
+  <div style="max-width:750px;margin:0 auto;text-align:center" class="reveal">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(4rem,10vw,8rem);font-weight:700;color:rgba(255,255,255,.04);line-height:1;pointer-events:none;margin-bottom:-1rem">01</div>
+    <div class="overline">PARTIE UN</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;font-style:italic;color:#fff;line-height:1.2;margin-bottom:1.5rem">Notre conviction<br>pour Monoprix 2027.</h2>
+    <p style="font-size:.9rem;color:var(--rose);line-height:1.7;max-width:600px;margin:0 auto">La conseillère beauté n'est pas une ligne de coût. C'est le geste qui transforme une visite en relation, et une relation en performance.</p>
+  </div>
+  <div class="slide-counter">7 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 8 — 4 PILIERS ========== -->
+<section class="content-section" id="s8">
+  <div class="section-header reveal">
+    <div class="section-num">01</div>
+    <div class="overline">§ 01.1 · NOTRE LECTURE DU MARCHÉ</div>
+    <h2>Quatre piliers, <em>concrets.</em></h2>
+    <div class="subtitle">Plus qu'un rayon beauté : un rendez-vous beauté, ancré dans le quotidien urbain.</div>
+  </div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num" style="font-style:italic">01</div><div class="content"><h4>Une beauté qui relie</h4><p>Le conseil humain reconnecte la cliente à la marque, là où le digital seul ne suffit pas.</p></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">02</div><div class="content"><h4>Une beauté qui performe</h4><p>Chaque conseil bien donné devient un panier mieux construit et une vente croisée.</p></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">03</div><div class="content"><h4>Une beauté qui fidélise</h4><p>L'enrôlement fidélité s'intègre naturellement au parcours, sans le forcer.</p></div></div>
+    <div class="pillar"><div class="num" style="font-style:italic">04</div><div class="content"><h4>Une beauté qui se ressent</h4><p>Une qualité d'expérience perçue, mesurée dans la durée par visites mystères et NPS.</p></div></div>
+  </div>
+  <div class="slide-counter">8 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 9 — CINQ PROMESSES ========== -->
+<section class="content-section" id="s9">
+  <div class="section-header reveal">
+    <div class="section-num">01</div>
+    <div class="overline">§ 01.2 · CE QUE LA PRESTATION DOIT PRODUIRE</div>
+    <h2>Cinq promesses, <em>mesurables.</em></h2>
+    <div class="subtitle">Transformer chaque interaction beauté en valeur durable — et pouvoir le prouver.</div>
+  </div>
+  <div class="reveal" style="max-width:700px">
+    <div class="promise-item"><div class="num">▸</div><div><h4>Des contacts qui comptent</h4><p>6 à 8 conseils qualifiés / jour / conseillère.</p></div></div>
+    <div class="promise-item"><div class="num">▸</div><div><h4>Du business</h4><p>Progression du panier moyen et de l'UPT, performance incrémentale suivie.</p></div></div>
+    <div class="promise-item"><div class="num">▸</div><div><h4>De la connexion</h4><p>Ventes croisées multi-rayons maquillage · soin · parfumerie.</p></div></div>
+    <div class="promise-item"><div class="num">▸</div><div><h4>De l'attachement</h4><p>Activation fidélité et réachat intégrés au parcours.</p></div></div>
+    <div class="promise-item"><div class="num">▸</div><div><h4>De la preuve</h4><p>Qualité perçue mesurée par visites mystères (partenaire Roamler) et NPS.</p></div></div>
+  </div>
+  <div class="slide-counter">9 sur 107</div>
+</section>
+
+<!-- ========== SLIDE 10 — QUOTE ========== -->
+<section class="dark-section" id="s10" style="background:var(--bordeaux-deep)">
+  <div class="full-width-quote reveal">
+    <p style="font-size:clamp(1.1rem,2.8vw,1.7rem)">« Chaque conseil bien donné<br>devient un panier mieux construit,<br>une cliente mieux fidélisée,<br>une performance mieux mesurée. »</p>
+  </div>
+  <div class="slide-counter">10 sur 107</div>
+</section>
+
+<script>
+// Progress
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress').style.width=(window.scrollY/h*100)+'%';
+});
+
+// Nav
+const nav=document.getElementById('main-nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>100));
+
+// Reveal
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Dots
+const secs=[...document.querySelectorAll('section[id]')];
+const pi=document.getElementById('page-indicator');
+secs.forEach(s=>{
+  const d=document.createElement('div');
+  d.className='dot';d.dataset.section=s.id;
+  d.addEventListener('click',()=>s.scrollIntoView({behavior:'smooth'}));
+  pi.appendChild(d);
+});
+const dots=[...pi.querySelectorAll('.dot')];
+window.addEventListener('scroll',()=>{
+  let a=0;
+  secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<window.innerHeight/2)a=i});
+  dots.forEach((d,i)=>d.classList.toggle('active',i===a));
+});
+</script>
+</body>
+</html>
