@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PÉNÉLOPE × MONOPRIX · AO 2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bordeaux:#6D1E31;--bordeaux-deep:#4A1422;--gold:#B8965A;--gold-light:#CBB07E;--cream:#FAF6F3;--rose:#E4D0CF;--rose-muted:#B5969C;--dark:#2A141A;--muted:#8C7B7F;--faint:#AA999D}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;scroll-behavior:smooth}
+
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--dark);overflow-x:hidden}
+
+/* ===== PROGRESS BAR ===== */
+#progress-track{position:fixed;top:0;left:0;width:100%;height:3px;z-index:999;background:rgba(184,150,90,.12)}
+#progress-bar{height:100%;width:0;background:linear-gradient(90deg,var(--gold),#D4AF6A);transition:width .4s ease}
+
+/* ===== GLASS NAV ===== */
+#nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:998;display:flex;align-items:center;gap:18px;background:rgba(255,255,255,.7);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:10px 24px;border-radius:28px;border:1px solid rgba(184,150,90,.18);box-shadow:0 8px 40px rgba(0,0,0,.1);font-size:13px;color:var(--bordeaux);user-select:none}
+#nav button{background:none;border:none;font-size:20px;cursor:pointer;color:var(--bordeaux);padding:0 4px;transition:color .2s}
+#nav button:hover{color:var(--gold)}
+
+/* ===== SLIDE (section) ===== */
+.section{width:297mm;height:210mm;position:relative;overflow:hidden;margin:0 auto;page-break-after:always}
+
+/* ===== REVEAL ===== */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.show{opacity:1;transform:none}
+
+/* ===== SLIDE 1 — COVER ===== */
+.cover{background:var(--bordeaux);display:flex}
+.cover-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:22mm 14mm 18mm 20mm;position:relative;z-index:2}
+.cover-right{flex:0 0 36%;position:relative}
+.cover-right img{width:100%;height:100%;object-fit:cover}
+.cover-right::after{content:'';position:absolute;left:0;top:0;width:6mm;height:100%;background:linear-gradient(90deg,var(--bordeaux),transparent)}
+.cover-tag{display:inline-block;font-size:8.5pt;font-weight:700;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8mm;padding:3mm 5mm;background:rgba(184,150,90,.08);border-radius:2px}
+.cover-title{font-family:'Playfair Display',Georgia,serif;font-size:48pt;font-weight:700;color:var(--rose);line-height:1.1;margin-bottom:10mm}
+.cover-title em{font-style:italic;color:var(--gold)}
+.cover-sub{font-family:'Inter',sans-serif;font-size:12pt;color:var(--rose);line-height:1.6;margin-bottom:8mm;opacity:.85}
+.cover-meta{font-size:10pt;margin-top:auto;padding-top:8mm;border-top:1px solid rgba(184,150,90,.15)}
+.cover-meta strong{color:var(--rose)}
+.cover-meta span{color:var(--rose-muted)}
+
+/* ===== SLIDE 3 — ÉDITO ===== */
+.edito{background:var(--cream)}
+.edito-inner{display:flex;height:100%;padding:16mm 20mm 16mm 20mm;gap:12mm}
+.edito-main{flex:1;display:flex;flex-direction:column}
+.edito-sidebar{flex:0 0 52mm;display:flex;flex-direction:column;justify-content:center;gap:5mm;padding-left:6mm;border-left:1px solid rgba(184,150,90,.15)}
+.stat-card{background:#fff;border-radius:8px;padding:5mm 6mm;box-shadow:0 2px 12px rgba(109,30,49,.04);border-top:2.5px solid var(--gold);transition:transform .2s,box-shadow .2s}
+.stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(109,30,49,.08)}
+.stat-num{font-family:'Playfair Display',Georgia,serif;font-size:26pt;font-weight:700;color:var(--gold)}
+.stat-label{font-family:'Inter',sans-serif;font-size:9pt;color:var(--muted);margin-top:1mm}
+.label{display:inline-block;font-size:8.5pt;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:4mm;padding:2mm 4mm;background:rgba(184,150,90,.06);border-radius:2px}
+.heading{font-family:'Playfair Display',Georgia,serif;font-size:28pt;font-weight:700;color:var(--bordeaux);line-height:1.2;margin-bottom:5mm}
+.body-text{font-family:'Inter',sans-serif;font-size:11.5pt;color:#5E5358;line-height:1.6;margin-bottom:4mm}
+.body-text strong{color:var(--bordeaux)}
+.quote-block{font-family:'Playfair Display',Georgia,serif;font-size:18pt;font-style:italic;font-weight:600;color:var(--bordeaux);margin-top:auto;padding:5mm 0 0;border-top:1px solid rgba(109,30,49,.1);line-height:1.35}
+.signature{margin-top:auto;padding-top:5mm;border-top:1px solid rgba(109,30,49,.08);font-size:10pt}
+.signature strong{color:var(--bordeaux)}
+.signature span{color:var(--muted)}
+.footer-line{position:absolute;bottom:5mm;left:20mm;right:20mm;display:flex;justify-content:space-between;font-size:7pt;color:var(--faint);letter-spacing:.03em}
+
+/* ===== SLIDE 7 — DIVIDER ===== */
+.divider{background:var(--bordeaux);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative}
+.divider-num{font-family:'Playfair Display',Georgia,serif;font-size:160pt;font-weight:700;position:absolute;top:-10mm;left:18mm;color:rgba(255,255,255,.04);line-height:1;pointer-events:none}
+.divider-line{width:50mm;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin-bottom:6mm}
+.divider-sub{font-family:'Inter',sans-serif;font-size:9pt;font-weight:700;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:5mm}
+.divider-title{font-family:'Playfair Display',Georgia,serif;font-size:36pt;font-weight:700;font-style:italic;color:var(--rose);line-height:1.25;margin-bottom:8mm}
+.divider-desc{font-family:'Inter',sans-serif;font-size:12pt;color:var(--rose-muted);max-width:65%;line-height:1.55}
+.divider .footer-line{color:rgba(255,255,255,.2)}
+
+/* ===== SLIDE 8 — 4 PILLARS ===== */
+.pillars{background:var(--cream)}
+.pillars-inner{padding:14mm 20mm 10mm 20mm;height:100%;display:flex;flex-direction:column}
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;flex:1;margin-top:5mm}
+.pillar-card{background:#fff;border-radius:10px;padding:6mm 5mm;box-shadow:0 2px 16px rgba(109,30,49,.04);border-top:3px solid var(--gold);position:relative;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.pillar-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(109,30,49,.08)}
+.pillar-icon{width:10mm;height:10mm;background:rgba(184,150,90,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4mm}
+.pillar-icon img{width:5mm;height:5mm;object-fit:contain}
+.pillar-num{font-family:'Playfair Display',Georgia,serif;font-size:20pt;font-style:italic;color:var(--gold);position:absolute;top:4mm;right:5mm}
+.pillar-title{font-family:'Playfair Display',Georgia,serif;font-size:12pt;font-weight:700;color:var(--bordeaux);margin-bottom:3mm;line-height:1.25}
+.pillar-text{font-family:'Inter',sans-serif;font-size:9.5pt;color:#5E5358;line-height:1.55;flex:1}
+
+/* ===== PRINT ===== */
+@media print{
+  #progress-track,#nav{display:none!important}
+  .section{margin:0;page-break-after:always;box-shadow:none;border-radius:0}
+  .rv{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress-track"><div id="progress-bar"></div></div>
+<div id="nav">
+  <button onclick="scrollSlide(-1)">◀</button>
+  <span id="counter">1 / 4</span>
+  <button onclick="scrollSlide(1)">▶</button>
+</div>
+
+<!-- ============================= -->
+<!-- SLIDE 1 — COVER              -->
+<!-- ============================= -->
+<section class="section cover" id="s1">
+  <div class="cover-left">
+    <img src="assets/images/slide001_img03.jpg" style="height:12mm;margin-bottom:12mm" alt="Pénélope">
+    <div class="cover-tag rv">APPEL D'OFFRES · PRESTATION CONSEIL BEAUTÉ · 2027</div>
+    <div class="cover-title rv">
+      La beauté,<br>
+      <em>autrement.</em>
+    </div>
+    <div class="cover-sub rv">Mémoire de renouvellement pour le compte Monoprix Beauté.</div>
+    <div class="cover-meta rv">
+      <strong>PÉNÉLOPE</strong> <span> · Remise via NeoGrid · 29 mai 2026</span>
+    </div>
+  </div>
+  <div class="cover-right">
+    <img src="assets/images/slide001_img00.jpg" alt="">
+  </div>
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 3 — ÉDITO              -->
+<!-- ============================= -->
+<section class="section edito" id="s3">
+  <div class="edito-inner">
+    <div class="edito-main">
+      <div class="label rv">PRÉAMBULE · ÉDITO</div>
+      <div class="heading rv">Continuer à mériter<br>votre confiance.</div>
+      <div class="body-text rv"><strong>Treize années.</strong> Treize années à apprendre vos magasins, vos équipes, vos clientes — et à transformer cette connaissance en performance. Aujourd'hui, Monoprix écrit un nouveau chapitre beauté. Nous voulons l'écrire avec vous.</div>
+      <div class="quote-block rv">Le partenariat ne se renouvelle pas. Il se mérite, chaque jour.</div>
+      <div class="signature rv">
+        <strong>Pénélope · Direction du compte Monoprix</strong><br>
+        <span>Jayne Fernandes — Directrice de marché</span>
+      </div>
+    </div>
+    <div class="edito-sidebar">
+      <div class="stat-card rv">
+        <div class="stat-num">13 ans</div>
+        <div class="stat-label">de partenariat continu</div>
+      </div>
+      <div class="stat-card rv">
+        <div class="stat-num">120</div>
+        <div class="stat-label">conseillères en poste (CDC)</div>
+      </div>
+      <div class="stat-card rv">
+        <div class="stat-num">87</div>
+        <div class="stat-label">magasins animés</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-line"><span>3 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 7 — DIVIDER            -->
+<!-- ============================= -->
+<section class="section divider" id="s7">
+  <div class="divider-num rv">01</div>
+  <div class="divider-line rv"></div>
+  <div class="divider-sub rv">PARTIE UN</div>
+  <div class="divider-title rv">Notre conviction<br>pour Monoprix 2027.</div>
+  <div class="divider-desc rv">La conseillère beauté n'est pas une ligne de coût. C'est le geste qui transforme une visite en relation, et une relation en performance.</div>
+  <div class="footer-line"><span>7 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
+</section>
+
+<!-- ============================= -->
+<!-- SLIDE 8 — 4 PILLARS          -->
+<!-- ============================= -->
+<section class="section pillars" id="s8">
+  <div class="pillars-inner">
+    <div class="label rv">§ 01.1 · NOTRE LECTURE DU MARCHÉ</div>
+    <div class="heading rv" style="font-size:24pt">Quatre piliers, concrets.</div>
+    <div style="font-family:'Inter',sans-serif;font-size:10.5pt;color:var(--muted);margin-bottom:3mm" class="rv">Plus qu'un rayon beauté : un rendez-vous beauté, ancré dans le quotidien urbain.</div>
+    
+    <div class="pillars-grid">
+      <div class="pillar-card rv">
+        <div class="pillar-icon"><img src="assets/images/slide008_img05.png" alt=""></div>
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Une beauté qui relie</div>
+        <div class="pillar-text">Le conseil humain reconnecte la cliente à la marque, là où le digital seul ne suffit pas.</div>
+      </div>
+      <div class="pillar-card rv">
+        <div class="pillar-icon"><img src="assets/images/slide008_img11.png" alt=""></div>
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Une beauté qui performe</div>
+        <div class="pillar-text">Chaque conseil bien donné devient un panier mieux construit et une vente croisée.</div>
+      </div>
+      <div class="pillar-card rv">
+        <div class="pillar-icon"><img src="assets/images/slide008_img17.png" alt=""></div>
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Une beauté qui fidélise</div>
+        <div class="pillar-text">L'enrôlement fidélité s'intègre naturellement au parcours, sans le forcer.</div>
+      </div>
+      <div class="pillar-card rv">
+        <div class="pillar-icon"><img src="assets/images/slide008_img23.png" alt=""></div>
+        <div class="pillar-num">04</div>
+        <div class="pillar-title">Une beauté qui se ressent</div>
+        <div class="pillar-text">Une qualité d'expérience perçue, mesurée dans la durée par visites mystères et NPS.</div>
+      </div>
+    </div>
+    
+    <div class="footer-line"><span>8 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
+  </div>
+</section>
+
+<script>
+// Reveal on scroll
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('progress-bar').style.width=(window.scrollY/h*100)+'%';
+});
+
+// Nav
+let cur=0;
+const secs=[...document.querySelectorAll('.section')];
+const cnt=document.getElementById('counter');
+function scrollSlide(dir){
+  cur=Math.max(0,Math.min(secs.length-1,cur+dir));
+  secs[cur].scrollIntoView({behavior:'smooth',block:'start'});
+  cnt.textContent=(cur+1)+' / '+secs.length;
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();scrollSlide(1)}
+  if(e.key==='ArrowLeft'){e.preventDefault();scrollSlide(-1)}
+});
+</script>
+</body>
+</html>
