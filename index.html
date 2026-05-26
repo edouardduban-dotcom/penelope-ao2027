@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PÉNÉLOPE × MONOPRIX · AO 2027</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;scroll-behavior:smooth}
 
 body{
   font-family:'Inter',Arial,sans-serif;
@@ -18,32 +18,103 @@ body{
   display:flex;flex-direction:column;align-items:center;
 }
 
-/* Slide container */
-.slide{width:297mm;height:210mm;position:relative;overflow:hidden;page-break-after:always;margin:16px auto;box-sizing:border-box}
+/* ===== PROGRESS BAR ===== */
+.progress-bar{position:fixed;top:0;left:0;width:100%;height:3px;z-index:200;background:rgba(184,150,90,.15)}
+.progress-bar .fill{height:100%;background:linear-gradient(90deg,#B8965A,#D4AF6A);transition:width .3s ease;width:0}
+
+/* ===== SLIDE CONTAINER ===== */
+.slide{width:297mm;height:210mm;position:relative;overflow:hidden;page-break-after:always;margin:20px auto;box-sizing:border-box;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.25);transition:transform .3s ease,box-shadow .3s ease}
+.slide:hover{transform:translateY(-2px);box-shadow:0 24px 70px rgba(0,0,0,.3)}
 .slide-light{background:#FAF6F3;color:#2A141A}
 .slide-dark{background:#6D1E31;color:#E4D0CF}
 
-/* Shared footer */
-.footer{position:absolute;bottom:5mm;left:8mm;right:8mm;display:flex;justify-content:space-between;font-family:Arial,sans-serif;font-size:7pt;color:#AA999D}
-.slide-dark .footer{color:rgba(255,255,255,.3)}
+/* ===== REVEAL ANIMATIONS ===== */
+.slide{opacity:0;transform:translateY(30px);animation:revealSlide .6s ease forwards}
+@keyframes revealSlide{to{opacity:1;transform:translateY(0)}}
+.slide:nth-child(1){animation-delay:.05s}
+.slide:nth-child(2){animation-delay:.1s}
+.slide:nth-child(3){animation-delay:.15s}
+.slide:nth-child(n+4){animation-delay:.2s}
 
-/* Navigation */
-.nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.92);padding:6px 16px;border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.15);font-size:11px;color:#6D1E31;user-select:none}
-.nav button{background:none;border:none;font-size:18px;cursor:pointer;color:#6D1E31;padding:0 4px}
-.nav button:hover{color:#B0894F}
-.nav span{min-width:60px;text-align:center}
+/* Stagger children inside slides */
+.slide .section-label,.slide .slide-title,.slide blockquote,.slide p,.slide .card,.slide .stat-card,.slide table{opacity:0;transform:translateY(15px);transition:opacity .5s ease,transform .5s ease}
+.slide.is-visible .section-label{opacity:1;transform:none;transition-delay:.1s}
+.slide.is-visible .slide-title,.slide.is-visible [style*="font-family:Georgia"][style*="font-size:22pt"]{opacity:1;transform:none;transition-delay:.2s}
+.slide.is-visible blockquote{opacity:1;transform:none;transition-delay:.3s}
+.slide.is-visible p{opacity:1;transform:none;transition-delay:.25s}
+.slide.is-visible .card,.slide.is-visible .stat-card{opacity:1;transform:none;transition-delay:.35s}
+.slide.is-visible table{opacity:1;transform:none;transition-delay:.4s}
 
-/* Print */
+/* ===== TYPOGRAPHY ===== */
+.section-label{font-family:'Inter',Arial,sans-serif;font-size:9pt;font-weight:700;letter-spacing:.1em;color:#B8965A;text-transform:uppercase;margin-bottom:3mm;display:inline-block;padding:2mm 4mm;background:rgba(184,150,90,.08);border-radius:2px}
+
+/* ===== SHARED FOOTER ===== */
+.footer{position:absolute;bottom:5mm;left:8mm;right:8mm;display:flex;justify-content:space-between;font-family:'Inter',Arial,sans-serif;font-size:7pt;color:#AA999D;letter-spacing:.03em}
+.slide-dark .footer{color:rgba(255,255,255,.25)}
+
+/* ===== STAT CARDS (gold numbers) ===== */
+.slide-light [style*="background:#fff"][style*="border-radius:4px"]{
+  background:#fff!important;border-radius:8px!important;box-shadow:0 4px 16px rgba(109,30,49,.06)!important;padding:5mm 6mm!important;border-top:2px solid #B8965A!important;transition:transform .2s ease,box-shadow .2s ease
+}
+.slide-light [style*="background:#fff"][style*="border-radius:4px"]:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(109,30,49,.1)!important}
+
+/* ===== DIVIDER SLIDES ===== */
+.slide-dark [style*="font-size:120pt"]{
+  font-family:'Playfair Display',Georgia,serif!important;
+  background:linear-gradient(135deg,rgba(255,255,255,.03),rgba(255,255,255,.08))!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important
+}
+.slide-dark [style*="width:40mm"][style*="height:2px"]{
+  background:linear-gradient(90deg,#B8965A,transparent)!important
+}
+
+/* ===== GLASSMORPHISM NAV ===== */
+.nav{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:100;
+  display:flex;align-items:center;gap:16px;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  padding:8px 20px;border-radius:24px;
+  border:1px solid rgba(184,150,90,.2);
+  box-shadow:0 8px 32px rgba(0,0,0,.12);
+  font-size:12px;color:#6D1E31;user-select:none
+}
+.nav button{background:none;border:none;font-size:20px;cursor:pointer;color:#6D1E31;padding:0 6px;transition:color .2s}
+.nav button:hover{color:#B8965A}
+.nav span{min-width:70px;text-align:center;font-weight:600;letter-spacing:.03em}
+
+/* ===== TABLES ===== */
+.slide-light table{border-radius:6px;overflow:hidden;border:1px solid rgba(109,30,49,.08)}
+.slide-light th{font-family:'Inter',Arial,sans-serif!important;letter-spacing:.03em}
+.slide-light td{font-family:'Inter',Arial,sans-serif!important}
+
+/* ===== QUOTE BLOCKS ===== */
+blockquote{
+  font-family:'Playfair Display',Georgia,serif!important;
+  background:rgba(109,30,49,.03)!important;
+  border-radius:0 8px 8px 0!important;
+  padding:4mm 6mm 4mm 5mm!important;
+  margin:4mm 0!important
+}
+
+/* ===== BODY TEXT ===== */
+.slide-light p[style]{color:#5E5358!important;line-height:1.6!important}
+
+/* ===== PRINT ===== */
 @media print{
   body{background:white}
-  .nav{display:none!important}
-  .slide{margin:0;box-shadow:none;page-break-after:always}
+  .progress-bar,.nav{display:none!important}
+  .slide{margin:0;box-shadow:none;border-radius:0;animation:none;opacity:1;transform:none;break-after:page}
+  .slide *{opacity:1!important;transform:none!important}
 }
 
 @media screen{.slide{scroll-snap-align:start}}
 </style>
 </head>
 <body>
+
+<div class="progress-bar"><div class="fill" id="progress"></div></div>
 
 <div class="nav" id="nav">
   <button onclick="prev()">◀</button>
@@ -3084,10 +3155,13 @@ let current=0;
 const slides=document.querySelectorAll('.slide');
 const total=slides.length;
 const counter=document.getElementById('counter');
+const progress=document.getElementById('progress');
+
 function show(n){
   if(n<0)n=0;if(n>=total)n=total-1;
   slides[n].scrollIntoView({behavior:'smooth',block:'start'});
   counter.textContent=(n+1)+' / '+total;
+  progress.style.width=((n+1)/total*100)+'%';
   current=n;
 }
 function next(){show(current+1)}
@@ -3097,6 +3171,19 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft'){e.preventDefault();prev()}
   if(e.key==='Home'){e.preventDefault();show(0)}
   if(e.key==='End'){e.preventDefault();show(total-1)}
+});
+
+// Intersection Observer for reveal animations
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible')}});
+},{threshold:0.3});
+slides.forEach(s=>observer.observe(s));
+
+// Track scroll position for progress
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  const p=window.scrollY/h*100;
+  progress.style.width=p+'%';
 });
 </script>
 </body>
