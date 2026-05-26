@@ -44,20 +44,22 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--dark);overflow-x
 .cover-meta span{color:var(--rose-muted)}
 
 /* ===== SLIDE 3 — ÉDITO ===== */
-.edito{background:var(--cream)}
-.edito-inner{display:flex;height:100%;padding:16mm 20mm 16mm 20mm;gap:12mm}
-.edito-main{flex:1;display:flex;flex-direction:column}
-.edito-sidebar{flex:0 0 52mm;display:flex;flex-direction:column;justify-content:center;gap:5mm;padding-left:6mm;border-left:1px solid rgba(184,150,90,.15)}
-.stat-card{background:#fff;border-radius:8px;padding:5mm 6mm;box-shadow:0 2px 12px rgba(109,30,49,.04);border-top:2.5px solid var(--gold);transition:transform .2s,box-shadow .2s}
-.stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(109,30,49,.08)}
-.stat-num{font-family:'Playfair Display',Georgia,serif;font-size:26pt;font-weight:700;color:var(--gold)}
-.stat-label{font-family:'Inter',sans-serif;font-size:9pt;color:var(--muted);margin-top:1mm}
+.edito{background:var(--cream);display:flex}
+.edito-left{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:14mm 10mm 14mm 20mm}
+.edito-right{flex:0 0 70mm;background:var(--bordeaux);position:relative;overflow:hidden}
+.edito-right img{width:100%;height:100%;object-fit:cover;opacity:.3;mix-blend-mode:overlay}
+.edito-right-content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6mm;padding:10mm}
+.edito-stat{text-align:center}
+.edito-stat-num{font-family:'Playfair Display',Georgia,serif;font-size:32pt;font-weight:700;color:var(--gold);line-height:1}
+.edito-stat-label{font-family:'Inter',sans-serif;font-size:9pt;color:var(--rose-muted);margin-top:1.5mm;letter-spacing:.03em}
+.edito-stat-sep{width:30mm;height:1px;background:linear-gradient(90deg,transparent,rgba(184,150,90,.3),transparent)}
 .label{display:inline-block;font-size:8.5pt;font-weight:700;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;margin-bottom:4mm;padding:2mm 4mm;background:rgba(184,150,90,.06);border-radius:2px}
-.heading{font-family:'Playfair Display',Georgia,serif;font-size:28pt;font-weight:700;color:var(--bordeaux);line-height:1.2;margin-bottom:5mm}
-.body-text{font-family:'Inter',sans-serif;font-size:11.5pt;color:#5E5358;line-height:1.6;margin-bottom:4mm}
+.heading{font-family:'Playfair Display',Georgia,serif;font-size:30pt;font-weight:700;color:var(--bordeaux);line-height:1.15;margin-bottom:5mm}
+.heading em{font-style:italic;color:var(--gold);font-weight:600}
+.body-text{font-family:'Inter',sans-serif;font-size:11pt;color:#5E5358;line-height:1.65}
 .body-text strong{color:var(--bordeaux)}
-.quote-block{font-family:'Playfair Display',Georgia,serif;font-size:18pt;font-style:italic;font-weight:600;color:var(--bordeaux);margin-top:auto;padding:5mm 0 0;border-top:1px solid rgba(109,30,49,.1);line-height:1.35}
-.signature{margin-top:auto;padding-top:5mm;border-top:1px solid rgba(109,30,49,.08);font-size:10pt}
+.quote-block{font-family:'Playfair Display',Georgia,serif;font-size:15pt;font-style:italic;font-weight:600;color:var(--bordeaux);margin-top:auto;padding:4mm 6mm;border-left:3px solid var(--gold);line-height:1.4;background:rgba(184,150,90,.03)}
+.signature{padding-top:4mm;border-top:1px solid rgba(109,30,49,.08);font-size:9.5pt}
 .signature strong{color:var(--bordeaux)}
 .signature span{color:var(--muted)}
 .footer-line{position:absolute;bottom:5mm;left:20mm;right:20mm;display:flex;justify-content:space-between;font-size:7pt;color:var(--faint);letter-spacing:.03em}
@@ -73,15 +75,15 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--dark);overflow-x
 
 /* ===== SLIDE 8 — 4 PILLARS ===== */
 .pillars{background:var(--cream)}
-.pillars-inner{padding:14mm 20mm 10mm 20mm;height:100%;display:flex;flex-direction:column}
-.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;flex:1;margin-top:5mm}
-.pillar-card{background:#fff;border-radius:10px;padding:6mm 5mm;box-shadow:0 2px 16px rgba(109,30,49,.04);border-top:3px solid var(--gold);position:relative;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.pillars-inner{padding:12mm 20mm 14mm 20mm;height:100%;display:flex;flex-direction:column}
+.pillars-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6mm;flex:1;margin-top:4mm}
+.pillar-card{background:#fff;border-radius:10px;padding:8mm 6mm;box-shadow:0 2px 16px rgba(109,30,49,.05);border-top:3px solid var(--gold);position:relative;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;justify-content:flex-start}
 .pillar-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(109,30,49,.08)}
-.pillar-icon{width:10mm;height:10mm;background:rgba(184,150,90,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4mm}
+.pillar-icon{width:11mm;height:11mm;background:rgba(184,150,90,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:4mm}
 .pillar-icon img{width:5mm;height:5mm;object-fit:contain}
-.pillar-num{font-family:'Playfair Display',Georgia,serif;font-size:20pt;font-style:italic;color:var(--gold);position:absolute;top:4mm;right:5mm}
-.pillar-title{font-family:'Playfair Display',Georgia,serif;font-size:12pt;font-weight:700;color:var(--bordeaux);margin-bottom:3mm;line-height:1.25}
-.pillar-text{font-family:'Inter',sans-serif;font-size:9.5pt;color:#5E5358;line-height:1.55;flex:1}
+.pillar-num{font-family:'Playfair Display',Georgia,serif;font-size:22pt;font-style:italic;color:var(--gold);position:absolute;top:5mm;right:6mm}
+.pillar-title{font-family:'Playfair Display',Georgia,serif;font-size:13pt;font-weight:700;color:var(--bordeaux);margin-bottom:3mm;line-height:1.2}
+.pillar-text{font-family:'Inter',sans-serif;font-size:10pt;color:#5E5358;line-height:1.55}
 
 /* ===== PRINT ===== */
 @media print{
@@ -125,29 +127,34 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--dark);overflow-x
 <!-- SLIDE 3 — ÉDITO              -->
 <!-- ============================= -->
 <section class="section edito" id="s3">
-  <div class="edito-inner">
-    <div class="edito-main">
+  <div class="edito-left">
+    <div>
       <div class="label rv">PRÉAMBULE · ÉDITO</div>
-      <div class="heading rv">Continuer à mériter<br>votre confiance.</div>
-      <div class="body-text rv"><strong>Treize années.</strong> Treize années à apprendre vos magasins, vos équipes, vos clientes — et à transformer cette connaissance en performance. Aujourd'hui, Monoprix écrit un nouveau chapitre beauté. Nous voulons l'écrire avec vous.</div>
-      <div class="quote-block rv">Le partenariat ne se renouvelle pas. Il se mérite, chaque jour.</div>
-      <div class="signature rv">
-        <strong>Pénélope · Direction du compte Monoprix</strong><br>
-        <span>Jayne Fernandes — Directrice de marché</span>
-      </div>
+      <div class="heading rv">Continuer à mériter<br><em>votre</em> confiance.</div>
     </div>
-    <div class="edito-sidebar">
-      <div class="stat-card rv">
-        <div class="stat-num">13 ans</div>
-        <div class="stat-label">de partenariat continu</div>
+    <div class="body-text rv"><strong>Treize années.</strong> Treize années à apprendre vos magasins, vos équipes, vos clientes — et à transformer cette connaissance en performance. Aujourd'hui, Monoprix écrit un nouveau chapitre beauté. Nous voulons l'écrire avec vous.</div>
+    <div class="quote-block rv">«&nbsp;Le partenariat ne se renouvelle pas. Il se mérite, chaque jour.&nbsp;»</div>
+    <div class="signature rv">
+      <strong>Pénélope · Direction du compte Monoprix</strong><br>
+      <span>Jayne Fernandes — Directrice de marché</span>
+    </div>
+  </div>
+  <div class="edito-right">
+    <img src="assets/images/slide007_img00.jpg" alt="">
+    <div class="edito-right-content">
+      <div class="edito-stat rv">
+        <div class="edito-stat-num">13 ans</div>
+        <div class="edito-stat-label">de partenariat continu</div>
       </div>
-      <div class="stat-card rv">
-        <div class="stat-num">120</div>
-        <div class="stat-label">conseillères en poste (CDC)</div>
+      <div class="edito-stat-sep"></div>
+      <div class="edito-stat rv">
+        <div class="edito-stat-num">120</div>
+        <div class="edito-stat-label">conseillères en poste (CDC)</div>
       </div>
-      <div class="stat-card rv">
-        <div class="stat-num">87</div>
-        <div class="stat-label">magasins animés</div>
+      <div class="edito-stat-sep"></div>
+      <div class="edito-stat rv">
+        <div class="edito-stat-num">87</div>
+        <div class="edito-stat-label">magasins animés</div>
       </div>
     </div>
   </div>
