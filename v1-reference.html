@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AO Monoprix 2027 — Réponse Pénélop'</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bordeaux:#7A2639;--bordeaux-dk:#5E1A2A;--bordeaux-deep:#3D1220;--bordeaux-lt:#9E4A5A;--rose:#C9A8A0;--rose-lt:#E3CEC8;--beige:#F5EDE8;--cream:#FAF6F3;--white:#FFF;--gold:#B8965A;--gold-lt:#D4B87A;--text-dark:#2D1A1F;--text-body:#4A3540;--text-muted:#8A7580}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;color:var(--text-body);background:#FFFFFF;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--bordeaux-lt),var(--gold));z-index:1001;width:0;transition:width .12s}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#page-indicator{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;gap:5px}
+#page-indicator .dot{width:5px;height:5px;border-radius:50%;background:rgba(122,38,57,.12);transition:all .3s;cursor:pointer}
+#page-indicator .dot.active{background:var(--gold);height:16px;border-radius:3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;padding:.8rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s}
+nav.scrolled{background:rgba(250,246,243,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(122,38,57,.06)}
+nav .brand{font-family:'Playfair Display',serif;font-weight:700;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bordeaux);text-decoration:none;opacity:0;transition:opacity .3s}
+nav.scrolled .brand{opacity:1}
+nav .brand span{color:var(--gold)}
+nav .nav-links{display:flex;gap:1.5rem}
+nav .nav-links a{font-size:.58rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;position:relative}
+nav .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+nav .nav-links a:hover{color:var(--bordeaux)}
+nav .nav-links a:hover::after{width:100%}
+nav .confidential{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(201,168,160,.4);border-radius:20px;padding:.15rem .6rem}
+.cover{display:flex;flex-direction:column;justify-content:flex-end;padding:0 8vw 8vh;min-height:100vh;position:relative;overflow:hidden}
+.cover-bg{position:absolute;inset:0;background:url('img/beauty-counter.jpg') center/cover no-repeat;z-index:0;transform:scale(1.05);transition:transform 20s linear}
+.cover:hover .cover-bg{transform:scale(1.15)}
+.cover-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(61,18,32,.94) 0%,rgba(122,38,57,.78) 40%,rgba(61,18,32,.88) 100%)}
+.cover .top-bar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:2rem 8vw;z-index:3}
+.cover .top-bar .logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.cover .top-bar .meta{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rose);text-align:right;line-height:2.2}
+.cover .gold-line{width:50px;height:2px;background:var(--gold);margin-bottom:1.5rem;position:relative;z-index:2;opacity:0;animation:cr .8s ease .2s forwards}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:700;line-height:1.08;margin-bottom:1rem;position:relative;z-index:2;color:var(--white);opacity:0;transform:translateY(35px);animation:cr .9s ease .4s forwards}
+.cover h1 em{font-style:italic;color:var(--rose-lt)}
+.cover .tagline{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2vw,1.25rem);font-style:italic;color:var(--rose);margin-bottom:2.5rem;position:relative;z-index:2;opacity:0;animation:cr .9s ease .7s forwards}
+.cover .bottom-line{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:2;opacity:0;animation:cr .9s ease 1s forwards}
+.cover .bottom-line .info{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.04em;line-height:2.2}
+.cover .bottom-line .date{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--white)}
+.cover .scroll-hint{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:2;opacity:0;animation:cr .8s ease 1.3s forwards}
+.cover .scroll-hint span{display:block;width:1px;height:28px;background:linear-gradient(to bottom,var(--rose),transparent);margin:0 auto .3rem}
+.cover .scroll-hint small{font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--rose)}
+@keyframes cr{to{opacity:1;transform:translateY(0)}}
+.content-section{padding:4.5vh 8vw;max-width:1400px;margin:0 auto;background:#FFFFFF}
+.dark-section{background:var(--bordeaux);color:var(--white);padding:4.5vh 8vw;position:relative;overflow:hidden}
+.dark-section::before{content:'';position:absolute;top:-50%;right:-20%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(184,150,90,.04) 0%,transparent 70%);pointer-events:none}
+.dark-section-deep{background:var(--bordeaux-deep);color:var(--white);padding:4.5vh 8vw}
+.hero-band{position:relative;height:36vh;min-height:260px;overflow:hidden;margin-bottom:0}
+.hero-band .bg-img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.hero-band::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(61,18,32,.25) 0%,rgba(61,18,32,.7) 60%,rgba(61,18,32,.95) 100%)}
+.hero-band::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);z-index:3}
+.hero-band .hero-text{position:absolute;top:50%;left:8vw;z-index:2;transform:translateY(-50%);width:60%}
+.hero-band .hero-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:700;color:var(--white);line-height:1.2}
+.hero-band .hero-text h2 em{color:var(--rose-lt);font-style:italic}
+.hero-band .hero-text .overline{font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.4rem}
+.section-header{margin-bottom:2.5rem;position:relative}
+.section-header .section-num{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,8vw,7rem);font-weight:700;color:rgba(122,38,57,.04);position:absolute;top:-1.5rem;left:-.5rem;line-height:1;pointer-events:none}
+.section-header .overline{font-size:.55rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:700;color:var(--text-dark);line-height:1.18;margin-bottom:.6rem}
+.section-header h2 em{font-style:italic;color:var(--bordeaux)}
+.section-header .subtitle{font-size:.9rem;color:var(--text-muted);max-width:550px;line-height:1.7}
+.dark-section .section-header h2,.dark-section-deep .section-header h2{color:var(--white)}
+.dark-section .section-header h2 em,.dark-section-deep .section-header h2 em{color:var(--rose-lt)}
+.dark-section .section-header .subtitle,.dark-section-deep .section-header .subtitle{color:rgba(255,255,255,.5)}
+.dark-section .section-header .overline,.dark-section-deep .section-header .overline{color:var(--gold-lt)}
+.card{background:var(--white);border-radius:14px;padding:2rem;border:1px solid rgba(122,38,57,.05);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(122,38,57,.07)}
+.card h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--text-dark);margin-bottom:.4rem}
+.card p{font-size:.82rem;color:var(--text-body);line-height:1.6}
+.card .num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.3rem}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.stat{text-align:center;padding:1.5rem 1rem;background:var(--white);border-radius:10px;border:1px solid rgba(122,38,57,.04);transition:all .3s}
+.stat:hover{border-color:var(--gold);transform:translateY(-2px)}
+.stat .value{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--bordeaux);line-height:1}
+.stat .unit{font-size:.82rem;color:var(--bordeaux);font-weight:500}
+.stat .label{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.4rem;line-height:1.4}
+.dark-section .stat{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section .stat .value{color:var(--gold-lt)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.quote-block{position:relative;padding:2rem 2rem 2rem 3rem;margin:2rem 0}
+.quote-block::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(to bottom,var(--gold),var(--bordeaux-lt))}
+.quote-block::after{content:'\201C';position:absolute;top:.1rem;left:1rem;font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);line-height:1}
+.quote-block p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--text-dark);line-height:1.5}
+.quote-block .attribution{font-family:'Inter',sans-serif;font-size:.6rem;font-style:normal;color:var(--text-muted);margin-top:.6rem;letter-spacing:.1em;text-transform:uppercase}
+.dark-section .quote-block{background:rgba(255,255,255,.03);border-radius:10px}
+.dark-section .quote-block p{color:var(--white)}
+.dark-section .quote-block .attribution{color:var(--rose)}
+.pillar{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem;border-radius:10px;background:var(--white);border:1px solid rgba(122,38,57,.04);transition:all .3s}
+.pillar:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(122,38,57,.05)}
+.pillar .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);flex-shrink:0;width:38px;text-align:center}
+.pillar .content h4{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--text-dark);margin-bottom:.2rem}
+.pillar .content p{font-size:.8rem;color:var(--text-body);line-height:1.5}
+.phases{display:flex;gap:.8rem;flex-wrap:wrap}
+.phase{flex:1;min-width:130px;padding:1.4rem 1rem;border-radius:10px;background:var(--white);border:1px solid rgba(122,38,57,.04);text-align:center;transition:all .35s cubic-bezier(.22,1,.36,1)}
+.phase:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(122,38,57,.07)}
+.phase .step{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:.3rem}
+.phase h4{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;color:var(--text-dark);margin-bottom:.2rem}
+.phase p{font-size:.7rem;color:var(--text-muted);line-height:1.4}
+.timeline{position:relative;padding-left:2.2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),var(--rose),var(--bordeaux-lt))}
+.timeline-item{position:relative;padding-bottom:1.6rem;padding-left:1.5rem}
+.timeline-item::before{content:'';position:absolute;left:-2.2rem;top:.3rem;width:8px;height:8px;background:var(--gold);border-radius:50%;border:2px solid var(--cream);z-index:1}
+.timeline-item .period{font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.15rem}
+.timeline-item h4{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:var(--text-dark);margin-bottom:.15rem}
+.timeline-item p{font-size:.76rem;color:var(--text-body);line-height:1.5}
+.promise-row{display:flex;gap:.6rem;flex-wrap:wrap;margin:1.5rem 0}
+.promise{flex:1;min-width:110px;text-align:center;padding:1.1rem;border-radius:10px;background:rgba(122,38,57,.02);border:1px solid rgba(122,38,57,.05);transition:all .3s}
+.promise:hover{border-color:var(--gold);background:rgba(184,150,90,.03);transform:translateY(-2px)}
+.promise .icon{font-size:1.1rem;margin-bottom:.25rem}
+.promise .word{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;color:var(--bordeaux)}
+.promise .detail{font-size:.6rem;color:var(--text-muted);margin-top:.1rem}
+.photo-card{border-radius:14px;overflow:hidden;box-shadow:0 12px 40px rgba(61,18,32,.08);transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;position:relative}
+.photo-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(61,18,32,.12)}
+.photo-card img{width:100%;height:280px;object-fit:cover;display:block;transition:transform .6s}
+.photo-card:hover img{transform:scale(1.04)}
+.photo-card .caption{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 1.5rem 1.2rem;background:linear-gradient(to top,rgba(45,26,31,.88) 0%,rgba(45,26,31,.4) 70%,transparent 100%)}
+.photo-card .caption h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+.photo-card .caption p{font-size:.82rem;color:rgba(255,255,255,.75);line-height:1.45}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:380px;border-radius:14px;overflow:hidden;box-shadow:0 16px 50px rgba(61,18,32,.08)}
+.split img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.split:hover img{transform:scale(1.03)}
+.split .text-side{padding:2.2rem;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
+.split .text-side h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text-dark);margin-bottom:.5rem;line-height:1.25}
+.split .text-side p{font-size:.82rem;color:var(--text-body);line-height:1.6}
+.split.dark .text-side{background:var(--bordeaux-deep);color:var(--white)}
+.split.dark .text-side h3{color:var(--white)}
+.split.dark .text-side p{color:rgba(255,255,255,.6)}
+.bullet-list{list-style:none;padding:0}
+.bullet-list li{padding:.4rem 0 .4rem 1.3rem;position:relative;font-size:.8rem;line-height:1.5;color:var(--text-body)}
+.bullet-list li::before{content:'';position:absolute;left:0;top:.7rem;width:4px;height:4px;background:var(--gold);border-radius:50%}
+.tag{display:inline-block;font-size:.5rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,150,90,.25);border-radius:16px;padding:.15rem .6rem;margin-bottom:.5rem}
+.annexe-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem}
+.annexe-item{display:flex;gap:.6rem;align-items:flex-start;padding:.8rem;border-radius:8px;background:var(--white);border:1px solid rgba(122,38,57,.04);transition:all .2s}
+.annexe-item:hover{border-color:var(--gold)}
+.annexe-item .num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:.78rem;flex-shrink:0}
+.annexe-item .text{font-size:.72rem;color:var(--text-body);line-height:1.4}
+.conform-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.conform-item{display:flex;align-items:flex-start;gap:.7rem;padding:.9rem 1rem;border-radius:8px;background:var(--white);border:1px solid rgba(122,38,57,.04)}
+.conform-item .check{width:16px;height:16px;border-radius:50%;background:var(--gold);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:.5rem;flex-shrink:0;margin-top:.1rem}
+.conform-item .text{font-size:.75rem;line-height:1.45;color:var(--text-body)}
+.conform-item .text strong{color:var(--text-dark)}
+.kpi-row{display:flex;gap:1rem;flex-wrap:wrap;margin:1.5rem 0}
+.kpi-box{flex:1;min-width:140px;text-align:center;padding:1.2rem;border-radius:10px;background:var(--white);border:1px solid rgba(122,38,57,.04)}
+.kpi-box .kpi-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--bordeaux)}
+.kpi-box .kpi-label{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-top:.3rem;line-height:1.3}
+.dark-section .kpi-box{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section .kpi-box .kpi-val{color:var(--gold-lt)}
+.two-col-compare{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin:1.5rem 0}
+.compare-col{padding:1.5rem;border-radius:12px;background:var(--white);border:1px solid rgba(122,38,57,.05)}
+.compare-col h4{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--text-dark);margin-bottom:.8rem}
+.compare-col ul{list-style:none;padding:0}
+.compare-col ul li{padding:.3rem 0 .3rem 1.2rem;position:relative;font-size:.78rem;line-height:1.5;color:var(--text-body)}
+.compare-col ul li::before{content:'';position:absolute;left:0;top:.7rem;width:4px;height:4px;border-radius:50%}
+.compare-col.left ul li::before{background:var(--text-muted)}
+.compare-col.right ul li::before{background:var(--gold)}
+.full-width-quote{padding:5vh 8vw;text-align:center;position:relative}
+.full-width-quote::before{content:'\201C';font-family:'Playfair Display',serif;font-size:5rem;color:rgba(184,150,90,.15);position:absolute;top:0;left:50%;transform:translateX(-50%)}
+.full-width-quote p{font-family:'Playfair Display',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:var(--text-dark);line-height:1.5;max-width:700px;margin:0 auto}
+.full-width-quote .attribution{font-family:'Inter',sans-serif;font-size:.6rem;font-style:normal;color:var(--text-muted);margin-top:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.dark-section .full-width-quote p{color:var(--white)}
+.dark-section .full-width-quote .attribution{color:var(--rose)}
+.engagement-grid{display:grid;grid-template-columns:1fr;gap:.5rem;max-width:800px;margin:0 auto}
+.engagement-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem 1.2rem;border-radius:8px;background:var(--white);border:1px solid rgba(122,38,57,.04);transition:all .2s}
+.engagement-item:hover{border-color:var(--gold)}
+.engagement-item .eng-num{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);font-size:.85rem;flex-shrink:0}
+.engagement-item .eng-text{font-size:.78rem;color:var(--text-body);line-height:1.5}
+.dark-section .engagement-item{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section .engagement-item .eng-text{color:rgba(255,255,255,.7)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.slide-counter{font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-align:right;margin-top:1rem}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4,.split,.conform-grid,.two-col-compare{grid-template-columns:1fr}.phases{flex-direction:column}.cover{padding:0 6vw 6vh}.content-section,.dark-section,.dark-section-deep{padding:4vh 5vw}nav .nav-links{display:none}nav{padding:.6rem 1.2rem}.stat-grid{grid-template-columns:repeat(2,fr)}.hero-band{height:28vh;min-height:180px}#page-indicator{display:none}}
+@media(max-width:900px){.hero-band{height:35vh;min-height:220px}.hero-band .hero-text h2{font:1.2rem}.split{min-height:280px}.split img{min-height:200px}.promise{min-width:45%;flex:0 0 45%}.promise-row{gap:1rem}.cover h1{font-size:1.8rem}.cover .tagline{font-size:.9rem}body::after{display:none}}
+
+/* FIX: dark-section-deep text visibility */
+.dark-section-deep .kpi-box{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section-deep .kpi-box .kpi-val{color:var(--gold-lt)}
+.dark-section-deep .full-width-quote p{color:var(--white)}
+.dark-section-deep .full-width-quote .attribution{color:var(--rose)}
+.dark-section-deep .quote-block p{color:var(--white)}
+.dark-section-deep .quote-block .attribution{color:var(--rose)}
+.dark-section-deep .stat{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section-deep .stat .value{color:var(--gold-lt)}
+.dark-section-deep .stat .label{color:rgba(255,255,255,.5)}
+.dark-section-deep .pillar{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.dark-section-deep .pillar .content h4{color:var(--white)}
+.dark-section-deep .pillar .content p{color:rgba(255,255,255,.6)}
+.dark-section-deep .phase{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.dark-section-deep .phase h4{color:var(--white)}
+.dark-section-deep .phase p{color:rgba(255,255,255,.5)}
+.dark-section-deep .card{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.08)}
+.dark-section-deep .card h3{color:var(--white)}
+.dark-section-deep .card p{color:rgba(255,255,255,.6)}
+.dark-section-deep .timeline-item h4{color:var(--white)}
+.dark-section-deep .timeline-item p{color:rgba(255,255,255,.6)}
+.dark-section-deep .compare-col{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.06)}
+.dark-section-deep .compare-col h4{color:var(--white)}
+.dark-section-deep .compare-col ul li{color:rgba(255,255,255,.6)}
+
+
+/* FIX: bump small typos */
+.pillar .content p{font-size:.88rem}
+.phase p{font-size:.78rem}
+.stat .label{font-size:.68rem}
+.stat .value{font-size:2.2rem}
+.card p{font-size:.88rem}
+.card h3{font-size:1.1rem}
+.timeline-item p{font-size:.84rem}
+.timeline-item h4{font-size:.95rem}
+.bullet-list li{font-size:.86rem}
+.compare-col ul li{font-size:.84rem}
+.annexe-item .text{font-size:.8rem}
+.conform-item .text{font-size:.82rem}
+.quote-block p{font-size:1.15rem}
+.full-width-quote p{font-size:clamp(1.15rem,2.5vw,1.5rem)}
+.promise .word{font-size:.95rem}
+.promise .detail{font-size:.72rem}
+.section-header .subtitle{font-size:.95rem}
+.overline{font-size:.62rem}
+.tag{font-size:.58rem}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <a href="#cover" class="brand">PÉNÉLOP'<span>'</span> × Monoprix</a>
+  <div class="nav-links">
+    <a href="#conviction">Conviction</a><a href="#contexte">Contexte</a><a href="#pourquoi">Pénélope</a><a href="#methode">Conseil</a><a href="#humain">Talents</a><a href="#pilotage">Pilotage</a><a href="#innovation">Innovation</a><a href="#transformation">Transformation</a><a href="#cloture">Clôture</a>
+  </div>
+  <span class="confidential">Confidentiel</span>
+</nav>
+<div id="page-indicator"></div>
+
+<!-- ═══ SLIDE 01 · COVER ═══ -->
+<section class="cover section" data-page="cover" id="cover">
+  <div class="cover-bg"></div>
+  <div class="top-bar"><div class="logo">PÉNÉLOP'</div><div class="meta">Confidentiel · Édition Mai 2026 · Volume I · AO 2027<br>Rédaction Alioze™ × Pénélop'</div></div>
+  <div class="gold-line"></div>
+  <h1>Réponse à l'appel d'offres<br><em>Conseillère Beauté</em><br>Monoprix 2027</h1>
+  <div class="tagline">L'expertise beauté de votre quotidien</div>
+  <div class="bottom-line"><div class="info">Plan stratégique 2027<br>Pénélope × Monoprix · Remise NeoGrid</div><div class="date">29 mai 2026</div></div>
+  <div class="scroll-hint"><span></span><small>Découvrir</small></div>
+</section>
+
+<!-- ═══ SLIDE 02 · SOMMAIRE ═══ -->
+<section class="content-section section" data-page="sommaire" id="sommaire" style="padding-top:9vh">
+  <div class="section-header reveal"><div class="overline">Structure</div><h2>Réponse en <em>huit mouvements</em></h2></div>
+  <div class="grid-2 reveal">
+    <div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">01</div><div class="content"><h4>Notre conviction</h4><p>Pour Monoprix 2027</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">02</div><div class="content"><h4>Ce que Monoprix veut réussir</h4><p>Reconquête beauté, nouveau concept</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">03</div><div class="content"><h4>Pourquoi Pénélope</h4><p>Le partenaire le plus sûr</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">04</div><div class="content"><h4>Le conseil beauté</h4><p>Notre méthode signature</p></div></div>
+    </div>
+    <div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">05</div><div class="content"><h4>Le capital humain</h4><p>Talents, formation, fidélisation</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">06</div><div class="content"><h4>Le pilotage</h4><p>De la performance</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">07</div><div class="content"><h4>L'innovation</h4><p>Au cœur de notre performance</p></div></div>
+      <div class="pillar" style="margin-bottom:1rem"><div class="num">08</div><div class="content"><h4>L'accompagnement</h4><p>De la transformation 2026-2028</p></div></div>
+    </div>
+  </div>
+  <div style="margin-top:2rem" class="reveal"><span class="tag">14 documents annexes</span> <span class="tag">3 livrables techniques séparés</span></div>
+</section>
+
+<!-- ═══ SLIDE 03 · LETTRE D'ENGAGEMENT ═══ -->
+<div class="hero-band"><img class="bg-img" src="img/beauty-portrait.jpg" alt="Conseil beauté" loading="lazy"><div class="hero-text"><div class="overline">Lettre d'engagement · Président du Groupe Pénélope</div><h2>Continuer à mériter <em>votre confiance.</em></h2></div></div>
+
+<!-- ═══ SLIDE 04 · LETTRE D'ENGAGEMENT (suite) ═══ -->
+<section class="dark-section">
+  <div style="max-width:720px;margin:0 auto" class="reveal">
+    <p style="color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:1.5rem">Cela fait quatorze ans que Pénélope accompagne Monoprix dans le déploiement de son conseil beauté en magasin. Quatorze ans pendant lesquels nos 130 conseillères ont, jour après jour, incarné votre maison auprès des 2,3 millions de clientes que nous accueillons chaque année.</p>
+    <p style="color:rgba(255,255,255,.6);line-height:1.85;margin-bottom:1.5rem">Ce partenariat ne se justifie pas par sa longévité, mais par ce qu'il a permis : un panier moyen tenu à 17,33 € dans un marché chahuté, et un capital de connaissance accumulé sur 89 magasins, mois par mois, exercice après exercice. Aucun concurrent ne peut nous offrir cette mémoire du parc — pas même en trois ans d'opération.</p>
+    <p style="color:rgba(255,255,255,.6);line-height:1.85">L'appel d'offres 2027 ouvre une page nouvelle : reconquête beauté ambitieuse, programme de remodeling sur 94 magasins, plan compétitivité prix sur 3 388 références, lancements K-Beauty, Mylee, Madara. Notre proposition s'inscrit dans cette ambition — pas en parallèle, mais alignée à chaque axe de votre transformation.</p>
+  </div>
+  <div class="quote-block reveal"><p style="color:var(--white)">Le partenariat ne se renouvelle pas — il se mérite chaque jour.</p><div class="attribution">Président — Directeur Général · Groupe Pénélope · FMS France</div></div>
+</section>
+
+<!-- ═══ SLIDE 05 · CONVICTION ═══ -->
+<section class="dark-section-deep">
+  <div class="full-width-quote reveal"><p>Monoprix veut redevenir le spécialiste beauté de centre-ville. Notre rôle est d'incarner cette ambition au comptoir — magasin par magasin, conseillère par conseillère.</p><div class="attribution">Notre lecture du contexte 2027 · Pénélope</div></div>
+</section>
+
+<!-- ═══ SLIDE 06 · SYNTHÈSE EXÉCUTIVE — 6 PILIERS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="overline">Synthèse exécutive</div><h2>Notre proposition en <em>six piliers</em></h2></div>
+  <div class="grid-3 reveal">
+    <div class="card"><div class="num">01</div><h3>Excellence du conseil</h3><p>Méthode signature en 5 phases. Multimarque. Multi-rayons. Mesurée.</p></div>
+    <div class="card"><div class="num">02</div><h3>Équipe stable formée</h3><p>Académie 9ᵉ arrondissement. Glow Up 3.0. You Can Learn.</p></div>
+    <div class="card"><div class="num">03</div><h3>Pilotage data-driven</h3><p>Dashboard Crystal. Plan Éclat. Transparence totale.</p></div>
+    <div class="card"><div class="num">04</div><h3>Accompagnement actif</h3><p>Remodeling 94 mag. K-Beauty, Mylee, Madara, MMU.</p></div>
+    <div class="card"><div class="num">05</div><h3>Innovation 2027</h3><p>Terminal mobile MDM. Miroir intelligent. On + Off. IA conseil.</p></div>
+    <div class="card"><div class="num">06</div><h3>Logique de partenariat</h3><p>Co-construction. Plans de progrès. Gain-share possible.</p></div>
+  </div>
+  <div style="margin-top:1rem" class="reveal"><p style="font-size:.78rem;color:var(--text-muted)">Six engagements de fond. Détaillés tout au long de la proposition.</p></div>
+</section>
+
+<!-- ═══ SLIDE 06b · INDEX ENGAGEMENTS CHIFFRÉS ═══ -->
+<section class="content-section" style="padding-top:0">
+  <div class="section-header reveal"><div class="overline">Index des engagements chiffrés</div><h2>Nos engagements <em>clés</em></h2></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">≥ +4</div><div class="unit">pts</div><div class="label">Différentiel CA mag animé vs non animé (seuil CDC dépassé)</div></div>
+    <div class="stat"><div class="value">J+10</div><div class="label">Reporting Top 30 livré (engagement CDC)</div></div>
+    <div class="stat"><div class="value">1×/sem</div><div class="label">Visite RS Top 30 (engagement CDC)</div></div>
+    <div class="stat"><div class="value">≤ 65 K€</div><div class="label">Budget séminaire annuel (enveloppe CDC)</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem"><p style="font-size:.72rem;color:var(--text-muted)">Les 11 engagements chiffrés complets — incluant taux de présence, turnover, fidélité, formation — sont validés en COPIL avant remise et détaillés en Annexe 13.</p></div>
+</section>
+
+<!-- ═══ SLIDE 07 · LA DÉCISION EN TROIS LIGNES ═══ -->
+<section class="dark-section">
+  <div class="section-header reveal"><div class="overline">La décision en trois lignes</div><h2>Aucun concurrent ne peut <em>offrir cela</em></h2></div>
+  <div class="grid-3 reveal" style="gap:1.5rem">
+    <div style="padding:1.5rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold-lt);margin-bottom:.5rem">01</div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">14 ans d'historique opérationnel et 89 magasins suivis mois par mois — aucune transition à supporter pour Monoprix.</p>
+    </div>
+    <div style="padding:1.5rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold-lt);margin-bottom:.5rem">02</div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">130 conseillères déjà en poste, formées et fidélisées — la clause de non-sollicitation contractuelle les protège.</p>
+    </div>
+    <div style="padding:1.5rem;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)">
+      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold-lt);margin-bottom:.5rem">03</div>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.6">Une école physique dédiée au 9ᵉ arrondissement — la seule du marché de l'externalisation conseil beauté.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 08 · PARTIE 1 BAND ═══ -->
+<div class="hero-band" id="conviction"><img class="bg-img" src="img/retail-store.jpg" alt="Monoprix" loading="lazy"><div class="hero-text"><div class="overline">Partie un</div><h2>Notre conviction pour <em>Monoprix 2027</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">La conseillère beauté n'est pas un coût de présence — c'est un levier mesurable de transformation commerciale.</p></div></div>
+
+<!-- ═══ SLIDE 09 · §01.1 QUATRE PILIERS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 01.1</div><h2>Notre lecture de <em>l'ambition Monoprix</em></h2><div class="subtitle">Quatre piliers stratégiques pour 2027</div></div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Spécialiste de centre-ville</h4><p>Redevenir LA référence beauté du quartier — pas un rayon parmi d'autres.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Territoire de différenciation</h4><p>La beauté comme étendard de l'enseigne, vs les pure-players prix.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Le conseil comme levier</h4><p>Préférence, conversion, fidélisation — un seul vecteur humain.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Écosystème cohérent</h4><p>Proximité, citadinité, qualité accessible — réconciliés au comptoir.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1.2rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Trois univers réconciliés : Maquillage · Parapharmacie · Parfumerie</div>
+</section>
+
+<!-- ═══ SLIDE 10 · §01.2 RÔLE STRATÉGIQUE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 01.2</div><h2>Le rôle stratégique <em>de la conseillère</em></h2></div>
+  <div class="split reveal"><img src="img/beauty-store.jpg" alt="Comptoir beauté" loading="lazy"><div class="text-side"><h3>Transformer la présence en présence qui transforme.</h3><p>Une incarnation humaine du repositionnement « spécialiste ». La conseillère n'est pas un coût de présence. C'est un levier mesurable de transformation commerciale.</p></div></div>
+</section>
+
+<!-- ═══ SLIDE 11 · §01.3 CINQ PROMESSES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 01.3</div><h2>Cinq promesses <em>mesurables</em></h2><div class="subtitle">Ce que la prestation doit produire</div></div>
+  <div class="promise-row reveal">
+    <div class="promise"><div class="icon">🤝</div><div class="word">+ Contacts</div><div class="detail">clients qualifiés</div></div>
+    <div class="promise"><div class="icon">💰</div><div class="word">+ Transformation</div><div class="detail">et panier moyen</div></div>
+    <div class="promise"><div class="icon">🔗</div><div class="word">+ Ventes croisées</div><div class="detail">multi-rayons</div></div>
+    <div class="promise"><div class="icon">💜</div><div class="word">+ Fidélité</div><div class="detail">programme Monoprix</div></div>
+    <div class="promise"><div class="icon">✨</div><div class="word">+ Qualité</div><div class="detail">perçue en magasin</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq promesses. Cinq mesures. Cinq engagements détaillés en Partie 6.</div>
+</section>
+
+<!-- ═══ SLIDE 12 · §01.4 QUATRE ACTES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 01.4</div><h2>Notre promesse en <em>quatre actes</em></h2><div class="subtitle">Un dispositif qui ne se contente pas d'occuper le terrain</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Sécuriser</h4><p>Ne pas se contenter d'occuper le terrain — assurer la présence qualifiée.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Exécuter</h4><p>Opération sans faille dès J+1 du démarrage contractuel.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Mesurer</h4><p>Progrès chiffré mois par mois, transparent et corrigeable.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Accompagner</h4><p>Transformation Monoprix 2026-2028, jalon par jalon.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre actes. Une seule logique : faire progresser, prouver, recommencer.</div>
+</section>
+
+<!-- ═══ SLIDE 13 · CONVICTION CITATION ═══ -->
+<section class="dark-section">
+  <div class="full-width-quote reveal"><p>En 2027, on ne mesure plus l'efficacité d'une conseillère au nombre d'heures passées au comptoir. On la mesure au CA additionnel qu'elle génère, au taux d'enrôlement qu'elle déclenche, au visiteur qui repart avec une routine.</p><div class="attribution">La conviction Pénélope · 2027</div></div>
+</section>
+
+<!-- ═══ SLIDE 14 · AVANT DE PROPOSER, ÉCOUTER ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="overline">Notre conviction</div><h2>Avant de proposer, <em>écouter</em></h2></div>
+  <div style="max-width:700px" class="reveal">
+    <p style="font-size:.88rem;line-height:1.8;margin-bottom:1.2rem">Cinq mois d'immersion dans votre stratégie 2026. Douze entretiens avec vos équipes terrain et siège. L'analyse de 89 magasins sur 36 mois d'historique mensuel. Le décryptage de votre séminaire beauté et de la roadmap d'offre 2026-2027.</p>
+    <p style="font-size:.88rem;line-height:1.8;margin-bottom:1.2rem">La partie qui suit restitue notre compréhension fine de votre transformation à l'œuvre — et identifie, pour chaque axe, le rôle attendu de la prestation de conseil beauté.</p>
+  </div>
+  <div class="quote-block reveal"><p>Une réponse alignée à chaque axe de votre stratégie.</p><div class="attribution">Notre proposition est construite à partir de votre brief, pas en parallèle de lui.</div></div>
+</section>
+
+<!-- ═══ SLIDE 15 · PARTIE 2 BAND ═══ -->
+<div class="hero-band" id="contexte"><img class="bg-img" src="img/lipstick-display.jpg" alt="Rayon beauté" loading="lazy"><div class="hero-text"><div class="overline">Partie deux</div><h2>Ce que Monoprix veut <em>réussir en 2027</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Notre lecture fine de votre stratégie beauté — pour aligner chaque action à votre transformation.</p></div></div>
+
+<!-- ═══ SLIDE 16 · §02.1 AMBITION CHIFFRÉE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.1</div><h2>Une ambition <em>chiffrée</em></h2><div class="subtitle">Une reconquête beauté structurée</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">+5,5 %</div><div class="label">CA visé en 2026</div></div>
+    <div class="stat"><div class="value">+25 %</div><div class="label">Croissance ambitionnée à horizon 2030</div></div>
+    <div class="stat"><div class="value">94</div><div class="label">Magasins rénovés en 4 ans</div></div>
+    <div class="stat"><div class="value">3 388</div><div class="label">Références impactées par le plan compétitivité prix</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Une ambition chiffrée. Un calendrier précis. Notre prestation alignée à chaque axe.</div>
+</section>
+
+<!-- ═══ SLIDE 17 · §02.2 REMODELING ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.2</div><h2>Programme de <em>remodeling</em></h2><div class="subtitle">94 magasins rénovés en quatre ans</div></div>
+  <div class="split reveal" style="direction:rtl"><img src="img/beauty-counter.jpg" alt="Concept beauté" loading="lazy" style="direction:ltr"><div class="text-side" style="direction:ltr">
+    <h3>94 magasins en 4 ans · +4,5 pts de CA post-rénovation documentés</h3>
+    <div class="timeline" style="margin-top:1.2rem">
+      <div class="timeline-item"><div class="period">2025 · 13 magasins</div><h4>Premiers retours</h4><p>+4,5 pts de CA pré/post-rénovation documentés.</p></div>
+      <div class="timeline-item"><div class="period">2026 · 35 magasins</div><h4>Accélération</h4><p>Année d'accélération du programme.</p></div>
+      <div class="timeline-item"><div class="period">2027 · 24 magasins</div><h4>Consolidation</h4><p>Plateau de consolidation et standardisation.</p></div>
+      <div class="timeline-item"><div class="period">2028 · 20 magasins</div><h4>Finalisation</h4><p>Finalisation du parc rénové.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 18 · §02.3 NOUVEAU CONCEPT ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.3</div><h2>Le nouveau concept <em>beauté</em></h2><div class="subtitle">Trois univers, un parcours fluide, une conseillère qui les relie</div></div>
+  <div class="grid-3 reveal">
+    <div class="photo-card"><img src="img/lipstick-display.jpg" alt="Maquillage" loading="lazy"><div class="caption"><h4>Zone 1 — Maquillage</h4><p>Table Make Up, écran TikTok, espaces démonstration, bar à teint.</p></div></div>
+    <div class="photo-card"><img src="img/skincare-routine.jpg" alt="Parapharmacie" loading="lazy"><div class="caption"><h4>Zone 2 — Parapharmacie</h4><p>Bar à sérum, conseil routine, soins experts, dermo-cosmétique.</p></div></div>
+    <div class="photo-card"><img src="img/perfume-bottles.jpg" alt="Parfumerie" loading="lazy"><div class="caption"><h4>Zone 3 — Parfumerie</h4><p>Bar à parfum, découverte olfactive, conseil signature. Haircare homme.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Trois univers. Un parcours. Une conseillère qui les relie tous.</div>
+</section>
+
+<!-- ═══ SLIDE 19 · §02.4 PLAN PRIX ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.4</div><h2>Plan compétitivité <em>prix</em></h2><div class="subtitle">Les premiers résultats observés sur le test</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">50</div><div class="label">Magasins concernés en 2026 (15 déployés)</div></div>
+    <div class="stat"><div class="value">3 388</div><div class="label">Références impactées</div></div>
+    <div class="stat"><div class="value">−10 %</div><div class="label">Prix moyen sur ces références</div></div>
+    <div class="stat"><div class="value">+5,7 pts</div><div class="label">De volume vs +2,7 pts CA, +4,8 pts trafic</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem"><p style="font-size:.78rem;color:var(--text-muted)">La conseillère doit incarner la valeur quand le prix baisse — argumentaire dédié en Partie 8.4.</p></div>
+</section>
+
+<!-- ═══ SLIDE 20 · §02.5 RENOUVELLEMENT OFFRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.5</div><h2>Renouvellement de <em>l'offre</em></h2><div class="subtitle">Six chantiers d'offre à absorber en 2026-2027</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>K-Beauty</h4><p>Dasique, Rom&nd · routine peau coréenne, glass skin.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Mylee</h4><p>Vernis, nail patch, semi-permanent dès mai-juin 2026.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Madara</h4><p>Maquillage naturel premium minimaliste.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Sortie MMU</h4><p>Bio, Boho, Revolution — transition à orchestrer.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Monop Make Up</h4><p>Repositionnement de la MDD historique.</p></div></div>
+    <div class="pillar"><div class="num">06</div><div class="content"><h4>Nouveaux casiers</h4><p>Gloss MMU printemps · Mascara/Poudres/Blush été 2026.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Six chantiers. Chacun avec son module formation dédié (Partie 5.7).</div>
+</section>
+
+<!-- ═══ SLIDE 21 · §02.5 ZOOM MYLEE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.5 · Zoom</div><h2>Mylee, la signature <em>ongles 2026</em></h2></div>
+  <div class="split reveal"><img src="img/nails-mani.jpg" alt="Mylee ongles" loading="lazy"><div class="text-side">
+    <h3>Vernis, nail patch et semi-permanent en linéaire Monoprix dès mai-juin 2026.</h3>
+    <p style="margin-bottom:1rem">Une nouvelle catégorie ongles à intégrer au cœur du conseil — et au catalogue de prestations payantes (cf. Partie 4.4). Formation flash sur les 130 conseillères. Animation lancement dans les flagships. Suivi mensuel par KPI dédié.</p>
+    <div class="phases">
+      <div class="phase" style="min-width:100px"><div class="step">Mai</div><h4>Lancement vernis</h4></div>
+      <div class="phase" style="min-width:100px"><div class="step">Juin</div><h4>Semi-permanent</h4></div>
+      <div class="phase" style="min-width:100px"><div class="step">100 %</div><h4>Conseillères formées</h4></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 22 · §02.5 TEMPS FORTS 2026 ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.5 · Calendrier</div><h2>Temps forts et <em>campagnes 2026</em></h2><div class="subtitle">Le calendrier d'animation et d'influence</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(6,1fr)">
+    <div class="phase"><h4>Jan-Fév</h4><p>Saint-Valentin · Beauty Week janvier</p></div>
+    <div class="phase"><h4>Avr-Mai</h4><p>Fête des Mères · Pic n°1 renforts</p></div>
+    <div class="phase"><h4>Juin-Août</h4><p>Beauty Week été · K-Beauty · TikTok</p></div>
+    <div class="phase"><h4>Sept-Oct</h4><p>Rentrée routine · Octobre Rose</p></div>
+    <div class="phase"><h4>Nov</h4><p>Black Friday · CA × 3 sur refs poussées</p></div>
+    <div class="phase"><h4>Déc</h4><p>Noël · Pic n°2 · renforts max</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Méga-campagnes Instagram et TikTok · effet « CA × 3 » documenté sur les références poussées par les influenceurs.</div>
+</section>
+
+<!-- ═══ SLIDE 23 · §02.6 TROIS OBJECTIFS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.6</div><h2>Trois objectifs <em>business</em></h2><div class="subtitle">Ce que la prestation doit délivrer</div></div>
+  <div class="grid-3 reveal">
+    <div class="card"><div class="num">01</div><h3>Driver croissance</h3><p>Via un conseil optimal en magasin, multi-marques et multi-rayons.</p></div>
+    <div class="card"><div class="num">02</div><h3>Différenciation</h3><p>Par le conseil incarné — l'élément que ni e-com ni discount ne peuvent répliquer.</p></div>
+    <div class="card"><div class="num">03</div><h3>Fidélité</h3><p>Embarquement systématique vers le programme de fidélité Monoprix.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Trois objectifs Monoprix. Trois engagements chiffrés Pénélope (cf. Partie 6.7).</div>
+</section>
+
+<!-- ═══ SLIDE 24 · §02.7 DÉFIS OPÉRATIONNELS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.7</div><h2>Défis opérationnels <em>à relever</em></h2><div class="subtitle">Cinq défis qui demandent un dispositif adapté</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(5,1fr)">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Parc hétérogène</h4><p>Centre-ville · périmètre ±20 % · franchises.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Transformation continue</h4><p>Rénovations · entrées/sorties marques · nouveaux casiers.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Coexistence formations</h4><p>L'Oréal et autres marques fournisseurs présents en magasin.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Pression prix</h4><p>Élever la valeur perçue quand l'étiquette baisse de 10 %.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Équité marques</h4><p>Tout en respectant les challenges négociés par Monoprix.</p></div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 25 · §02.X MARCHÉ BEAUTÉ ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.X · Marché</div><h2>Le marché beauté <em>2025</em></h2><div class="subtitle">Le contexte de la reconquête</div></div>
+  <div class="two-col-compare reveal">
+    <div class="compare-col left" style="background:rgba(74,53,64,.04)">
+      <h4>📉 Marché en recul</h4>
+      <ul><li>Solderies −3 %</li><li>Parapharmacie −1 %</li></ul>
+    </div>
+    <div class="compare-col right" style="background:rgba(184,150,90,.04)">
+      <h4>📈 Marché en croissance</h4>
+      <ul><li>HM&SM +7,5 %</li><li>Pharmacie +3,2 %</li><li>Sélectif +3,5 %</li><li>E-commerce +15 %</li></ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Monoprix se positionne sur la croissance HM&SM. Notre prestation doit accélérer ce levier.</div>
+</section>
+
+<!-- ═══ SLIDE 26 · §02.X PAYSAGE CONCURRENTIEL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.X · Concurrence</div><h2>Le nouveau paysage <em>concurrentiel</em></h2><div class="subtitle">Quatre circuits attaquent simultanément l'espace beauté GSA</div></div>
+  <div class="grid-2 reveal">
+    <div class="card"><div class="num">01</div><h3>Soft-discount beauté</h3><p>Action, NORMAL, Stokomani, Noz · +49 % ventes sur 2019-2023 (Circana).</p></div>
+    <div class="card"><div class="num">02</div><h3>Monobrands offensifs</h3><p>Adopt, Aroma-Zone, Rituals, Nyx, Typology (+8,6 % en 2024).</p></div>
+    <div class="card"><div class="num">03</div><h3>Pharmacies dynamisées</h3><p>Conseil expert dermo-cosmétique, naturalité, confiance retrouvée.</p></div>
+    <div class="card"><div class="num">04</div><h3>Sélectif en ralentissement</h3><p>France +4 % vs +8 % Europe (Sephora, Marionnaud, Nocibé).</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Notre rôle : armer Monoprix sur le seul terrain défendable — le conseil incarné.</div>
+</section>
+
+<!-- ═══ SLIDE 27 · §02.X ZOOM NORMAL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.X · Zoom</div><h2>Normal · le défi prix <em>qui inquiète le retail</em></h2></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">150</div><div class="label">Magasins en France (objectif 800)</div></div>
+    <div class="stat"><div class="value">6 000</div><div class="label">Références à prix soft-discount</div></div>
+    <div class="stat"><div class="value">+49 %</div><div class="label">Croissance soft-discounters 2019-2023</div></div>
+    <div class="stat"><div class="value">7 ans</div><div class="label">Arrivée en France · pour s'imposer</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Normal vend du produit. Monoprix vend du conseil + du produit. La conseillère est le seul avantage défendable face au discount.</div>
+</section>
+
+<!-- ═══ SLIDE 28 · §02.X PFAS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.X · Réglementaire</div><h2>Un virage réglementaire · <em>Interdiction des PFAS</em></h2></div>
+  <div class="split reveal"><img src="img/skincare-product.jpg" alt="PFAS" loading="lazy"><div class="text-side">
+    <h3>Janvier 2026 — la France interdit les PFAS dans les cosmétiques</h3>
+    <p style="margin-bottom:1rem">En avance sur l'UE. Pour la conseillère, cela signifie : un nouveau pitch produit, un retrait progressif de certaines références, une exigence de transparence sur les listes d'ingrédients en linéaire.</p>
+    <p>Un module dédié est intégré à Glow Up 3.0 et au programme You Can Learn. Toutes les conseillères seront briefées avant le 1er janvier 2026.</p>
+  </div></div>
+  <div class="quote-block reveal"><p>La conformité, c'est de la pédagogie en linéaire.</p></div>
+</section>
+
+<!-- ═══ SLIDE 29 · §02.X OMNICANAL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 02.X · Omnicanal</div><h2>L'omnicanal Monoprix · <em>un parcours en quatre temps</em></h2></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Avant</h4><p>monoprix.fr, app · découverte produit, recherche locale (50 % géolocalisée).</p></div>
+    <div class="phase"><div class="step">02</div><h4>En magasin</h4><p>Conseil incarné, démo flash, prestation payante, enrôlement fidélité.</p></div>
+    <div class="phase"><div class="step">03</div><h4>En caisse</h4><p>Cross-sell, recommandation routine, booking prestation suivante.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Après</h4><p>Suivi cliente via app, NPS, ré-engagement, contenu On + Off.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">La conseillère n'est plus seule en magasin : elle est le point d'ancrage humain d'un parcours omnicanal continu.</div>
+</section>
+
+<!-- ═══ SLIDE 30 · PARTIE 3 BAND ═══ -->
+<div class="hero-band" id="pourquoi"><img class="bg-img" src="img/handshake.jpg" alt="Partenariat" loading="lazy"><div class="hero-text"><div class="overline">Partie trois</div><h2>Pourquoi Pénélope est <em>le partenaire le plus sûr</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Le seul candidat qui a déjà la mémoire du parc, des conseillères et des chiffres.</p></div></div>
+
+<!-- ═══ SLIDE 31 · §03.1 PÉNÉLOPE EN CHIFFRES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.1</div><h2>Pénélope en <em>chiffres</em></h2><div class="subtitle">Le groupe en cinq chiffres clés</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">1971</div><div class="label">Année de création · FMS France</div></div>
+    <div class="stat"><div class="value">130 M€</div><div class="label">Chiffre d'affaires annuel groupe</div></div>
+    <div class="stat"><div class="value">2 300</div><div class="label">Clients accompagnés</div></div>
+    <div class="stat"><div class="value">227</div><div class="label">Permanents au siège</div></div>
+    <div class="stat"><div class="value">16</div><div class="label">Implantations en France</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Un acteur historique du conseil retail. Présent au quotidien sur le terrain.</div>
+</section>
+
+<!-- ═══ SLIDE 32 · §03.2 CONTRAT MONOPRIX ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.2</div><h2>Le contrat Monoprix <em>en chiffres</em></h2><div class="subtitle">Quatorze ans de partenariat, mesurés</div></div>
+  <div class="split reveal"><div class="text-side">
+    <h3>14 ans de partenariat continu</h3>
+    <div class="stat-grid" style="margin-top:1.2rem;text-align:left">
+      <div class="stat"><div class="value">130</div><div class="label">Conseillères en poste</div></div>
+      <div class="stat"><div class="value">89</div><div class="label">Magasins activés</div></div>
+      <div class="stat"><div class="value">40,5 M€</div><div class="label">CA cumulé généré 2025</div></div>
+      <div class="stat"><div class="value">2,34 M</div><div class="label">Clientes accueillies/an</div></div>
+    </div>
+  </div><img src="img/beauty-portrait.jpg" alt="Conseillère" loading="lazy"></div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Aucun candidat externe ne dispose de cette profondeur opérationnelle.</div>
+</section>
+
+<!-- ═══ SLIDE 33 · §03.3 PERFORMANCE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.3</div><h2>Performance <em>documentée</em></h2><div class="subtitle">La signature commerciale 2025</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">17,33 €</div><div class="label">Panier moyen · tenu et stable</div></div>
+    <div class="stat"><div class="value">1,57</div><div class="label">UPT · +1 % vs 2024</div></div>
+    <div class="stat"><div class="value">97</div><div class="label">Indice CA vs benchmark</div></div>
+    <div class="stat"><div class="value">3,68 M</div><div class="label">Produits vendus via conseil</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Panier moyen tenu dans un marché chahuté. Indice CA résistant face à la pression discount.</div>
+</section>
+
+<!-- ═══ SLIDE 34 · §03.4 LECTURE 2023-2025 ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.4</div><h2>Lecture 2023-2025 · <em>89 magasins</em></h2><div class="subtitle">Ce que les chiffres racontent vraiment</div></div>
+  <div class="two-col-compare reveal">
+    <div class="compare-col left" style="background:rgba(74,53,64,.04)">
+      <h4>Le constat</h4>
+      <ul>
+        <li>−1,9 % de CA sur 2 ans (marché −3 % à −7 %)</li>
+        <li>31 % des magasins en croissance — où sont les conditions du succès ?</li>
+        <li>Pression prix, e-commerce, discount : 4 vents contraires</li>
+      </ul>
+    </div>
+    <div class="compare-col right" style="background:rgba(184,150,90,.04)">
+      <h4>Ce que Pénélope a tenu</h4>
+      <ul>
+        <li>Panier moyen +1,1 % (vs −X % marché)</li>
+        <li>Prix moyen +1,2 % — la valeur a tenu</li>
+        <li>Conseil maintenu sur 89 magasins, sans rupture</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Dans un marché qui recule, la conseillère a contenu la baisse. Avec un nouveau concept, elle peut inverser la courbe.</div>
+</section>
+
+<!-- ═══ SLIDE 35 · §03.5 MÉMOIRE DU PARC ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.5</div><h2>La mémoire <em>du parc</em></h2></div>
+  <div class="split reveal dark"><img src="img/analytics.jpg" alt="Data" loading="lazy"><div class="text-side">
+    <h3>36 mois d'historique. 89 magasins. Magasin par magasin.</h3>
+    <p>Nous savons quel magasin sous-performe en parapharmacie. Quelle conseillère excelle en cross-sell. Quel jalon Beauty Week a généré le pic. Quel remodeling a payé.</p>
+    <p style="margin-top:.8rem">Cette mémoire opérationnelle est notre actif le plus défendable — et un avantage net pour Monoprix dès J+1.</p>
+  </div></div>
+  <div class="quote-block reveal" style="margin-top:1.5rem"><p>Aucun candidat externe ne peut reconstituer cette base de connaissance — ni en six mois, ni en deux ans.</p></div>
+</section>
+
+<!-- ═══ SLIDE 36 · §03.6 SIX FAMILLES INDICATEURS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.6</div><h2>Six familles <em>d'indicateurs suivis</em></h2><div class="subtitle">Une grille de lecture qui couvre toute la performance</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Commercial</h4><p>CA, panier moyen, UPT, indice, mix marques.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Animation</h4><p>Volume contacts qualifiés, démos, prestations.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Fidélité</h4><p>Enrôlements, ré-engagement, parcours client.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Qualité</h4><p>Visites mystères, NPS, taux de réclamation.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>RH</h4><p>Présence, turnover, ancienneté, formation.</p></div></div>
+    <div class="pillar"><div class="num">06</div><div class="content"><h4>Conformité</h4><p>Process, RGPD, sécurité, exhaustivité reporting.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Détaillées en Partie 6.6 · Reporting J+10 chaque mois.</div>
+</section>
+
+<!-- ═══ SLIDE 37 · §03.7 POPULATION ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.7</div><h2>Notre population <em>conseillères</em></h2><div class="subtitle">Un capital humain stable et qualifié</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">37 ans</div><div class="label">Âge moyen (équilibre senior/junior)</div></div>
+    <div class="stat"><div class="value">5+</div><div class="unit">ans</div><div class="label">Ancienneté moyenne chez Pénélope</div></div>
+    <div class="stat"><div class="value">92 %</div><div class="label">Population féminine (reflet du métier)</div></div>
+    <div class="stat"><div class="value">130</div><div class="label">Effectif dédié Monoprix</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Ancienneté élevée = expertise produit, connaissance clients, stabilité du conseil au comptoir.</div>
+</section>
+
+<!-- ═══ SLIDE 38 · §03.8 ÉTUDE DE CAS K-BEAUTY ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.8 · Étude de cas</div><h2>K-Beauty · quand le conseil rend <em>un lancement spectaculaire</em></h2></div>
+  <div class="split reveal"><img src="img/korea-beauty.jpg" alt="K-Beauty" loading="lazy"><div class="text-side">
+    <h3>K-Beauty (Dasique, Rom&nd) lancé en 2024</h3>
+    <p style="margin-bottom:1rem">La conseillère devient l'interprète d'une nouvelle culture beauté pour la cliente Monoprix. Pitch dédié construit par les responsables formation Pénélope. Module Glow Up 3.0 spécifique. Animation dans 30 magasins pilotes.</p>
+    <p>Le résultat : un lancement où la conseillère n'est pas la spectatrice, mais la traductrice.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">30</div><div class="label">Magasins pilotes</div></div>
+      <div class="stat"><div class="value">100 %</div><div class="label">Conseillères formées avant J0</div></div>
+      <div class="stat"><div class="value">✓</div><div class="label">Module dédié Glow Up</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 39 · §03.9 ÉTUDE DE CAS PRESTATIONS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.9 · Étude de cas</div><h2>Prestations payantes · <em>vendre l'expertise</em></h2></div>
+  <div class="split reveal" style="direction:rtl"><img src="img/mist-mirror.jpg" alt="Prestation maquillage" loading="lazy" style="direction:ltr"><div class="text-side" style="direction:ltr">
+    <h3>Vendre l'expertise — pas seulement le produit</h3>
+    <p style="margin-bottom:1rem">Maquillage anniversaire, mariage, consultation routine personnalisée : Pénélope structure progressivement un catalogue de prestations payantes au cœur du conseil.</p>
+    <p>La cliente paie l'expertise de la conseillère, repart avec une routine + les produits associés. Le ticket moyen passe d'un panier à un parcours. La cliente devient ambassadrice — partage sur les réseaux, revient avec ses amies.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">Extension</div><div class="label">Roadmap 2027</div></div>
+      <div class="stat"><div class="value">Multi-occas.</div><div class="label">Mariage, anniversaire, routine</div></div>
+      <div class="stat"><div class="value">+ Ticket</div><div class="label">Valeur perçue accrue</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 40 · §03.10 ÉTUDE DE CAS BEAUTY WEEK ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 03.10 · Étude de cas</div><h2>Beauty Week · le levier d'animation <em>qui transforme un magasin</em></h2></div>
+  <div class="split reveal"><img src="img/shopping-bags.jpg" alt="Beauty Week" loading="lazy"><div class="text-side">
+    <h3>Le magasin animé fait +X pts de CA sur la semaine vs le magasin témoin</h3>
+    <p style="margin-bottom:1rem">Mécanique : conseillère renforcée, démos flash, tirage au sort, push fidélité. Le simple fait d'avoir la conseillère présente sur les bons créneaux change la performance.</p>
+    <p>C'est exactement ce que l'engagement contractuel +4 pts CA mag animé doit traduire.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">Mag animé</div><div class="label">vs mag témoin</div></div>
+      <div class="stat"><div class="value">Démos</div><div class="label">+ tirage au sort</div></div>
+      <div class="stat"><div class="value">Fidélité</div><div class="label">Push enrôlement</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 41 · §03.11 CONTINUITÉ CONTRACTUELLE ═══ -->
+<section class="dark-section">
+  <div class="section-header reveal"><div class="tag">§ 03.11</div><h2>Continuité <em>contractuelle</em></h2><div class="subtitle">Dès J+1 de la signature, rien ne s'arrête</div></div>
+  <div class="quote-block reveal"><p style="color:var(--white)">Pas de transition. Pas de risque. Une continuité totale.</p><div class="attribution">130 conseillères déjà en poste · Encadrement qui connaît les 89 magasins · Reporting en route</div></div>
+  <div class="reveal" style="max-width:680px;margin-top:1.2rem">
+    <p style="color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:1rem">Nos 130 conseillères sont déjà en poste. Notre encadrement connaît les 89 magasins. Notre reporting tourne déjà. Le système d'information est en production. Les formations 2027 sont planifiées.</p>
+    <p style="color:rgba(255,255,255,.55);line-height:1.8">Un nouveau prestataire — même excellent — aura besoin de 12 à 18 mois pour atteindre ce niveau de fluidité opérationnelle. Sur un parc en transformation rapide (94 remodelings, 6 chantiers d'offre), ce délai serait coûteux.</p>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 42 · PARTIE 4 BAND ═══ -->
+<div class="hero-band" id="methode"><img class="bg-img" src="img/beauty-closeup.jpg" alt="Conseil" loading="lazy"><div class="hero-text"><div class="overline">Partie quatre</div><h2>Le conseil beauté — <em>notre méthode signature</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Une méthode en 5 phases, multimarque, multi-rayons, mesurée — adaptée au nouveau concept.</p></div></div>
+
+<!-- ═══ SLIDE 43 · §04.1 MÉTHODE 5 PHASES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.1</div><h2>La méthode en <em>cinq phases</em></h2><div class="subtitle">Le geste signature Pénélope × Monoprix</div></div>
+  <div class="phases reveal">
+    <div class="phase"><div class="step">01</div><h4>Accueil</h4><p>Sourire, posture, contact visuel — première impression chaleureuse.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Diagnostic</h4><p>Écoute besoin, type de peau, occasion — qualification rapide.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Recommandation</h4><p>Routine cohérente, multimarque, multi-rayons — pas un produit isolé.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Démo</h4><p>Test sur main, conseil application — la cliente touche, sent, voit.</p></div>
+    <div class="phase"><div class="step">05</div><h4>Enrôlement</h4><p>Fidélité Monoprix + suite (prestation, ré-engagement).</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq phases. Une logique : faire repartir la cliente avec une routine, pas un produit.</div>
+</section>
+
+<!-- ═══ SLIDE 44 · §04.2 ÉQUITÉ MARQUES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.2</div><h2>Équité <em>marques</em></h2><div class="subtitle">Recommander sans biais, tout en respectant les challenges Monoprix</div></div>
+  <div class="quote-block reveal"><p>Loyauté unique : Monoprix et la cliente. Aucun biais marque.</p><div class="attribution">La conseillère Pénélope ne reçoit aucun bonus marque, aucune incitation fournisseur direct. Sa seule loyauté est envers Monoprix et la cliente.</div></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Elle respecte les challenges commerciaux négociés par les acheteurs Monoprix — visibilité, mise en avant, push de catégorie — mais sans jamais orienter contre l'intérêt cliente. C'est la condition non négociable de la confiance client et de l'image enseigne.</p></div>
+</section>
+
+<!-- ═══ SLIDE 45 · §04.3 VENTE COMPLÉMENTAIRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.3</div><h2>Vente complémentaire <em>multi-rayons</em></h2><div class="subtitle">La conseillère traverse les trois univers — c'est sa valeur propre</div></div>
+  <div class="grid-3 reveal">
+    <div class="photo-card"><img src="img/skincare-product.jpg" alt="Soin" loading="lazy"><div class="caption"><h4>Du maquillage au soin</h4><p>Cliente fond de teint → recommandation crème hydratante préparatrice.</p></div></div>
+    <div class="photo-card"><img src="img/perfume-bottles.jpg" alt="Parfum" loading="lazy"><div class="caption"><h4>Du soin au parfum</h4><p>Routine soin signature → eau de toilette associée à l'univers de la cliente.</p></div></div>
+    <div class="photo-card"><img src="img/nails-mani.jpg" alt="Ongles" loading="lazy"><div class="caption"><h4>Du parfum aux ongles</h4><p>Mylee positionné comme finition d'une routine de fête.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">C'est ce qui distingue le conseil incarné du conseil produit. Trois univers réconciliés au comptoir.</div>
+</section>
+
+<!-- ═══ SLIDE 46 · §04.4 PRESTATIONS PAYANTES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.4</div><h2>Prestations <em>payantes</em></h2><div class="subtitle">Quatre formats au catalogue dès 2027</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Routine Express</h4><p>Consultation 15 min · diagnostic + routine personnalisée.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Maquillage Occasion</h4><p>Mariage, anniversaire, événement · prestation 45 min.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Manucure Mylee</h4><p>Pose vernis ou semi-permanent · dès lancement été 2026.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Masterclass Groupe</h4><p>EVJF, anniversaire amies · 3-6 personnes.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">La cliente paie l'expertise — repart avec une routine + les produits associés. Ticket moyen 3-5×.</div>
+</section>
+
+<!-- ═══ SLIDE 47 · §04.5 ROADMAP PRESTATIONS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.5</div><h2>Roadmap extension <em>prestations</em></h2><div class="subtitle">Déploiement progressif sur le parc 2027-2028</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">T2 2027</div><h4>Pilote 10 mag</h4><p>Routine express + maquillage occasion · Paris IDF.</p></div>
+    <div class="phase"><div class="step">T4 2027</div><h4>Extension 30 mag</h4><p>Ajout manucure Mylee · province.</p></div>
+    <div class="phase"><div class="step">T2 2028</div><h4>Roll-out 60 mag</h4><p>Masterclass groupe activée.</p></div>
+    <div class="phase"><div class="step">T4 2028</div><h4>Parc 89 mag</h4><p>Catalogue complet déployé.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Rythme aligné sur le programme remodeling. Une nouvelle ligne de revenu pour Monoprix.</div>
+</section>
+
+<!-- ═══ SLIDE 48 · §04.6 DÉMOS MUA ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.6</div><h2>Démos flash et <em>MUA</em></h2><div class="subtitle">Quatre formats d'animation en magasin</div></div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Démo flash 5 min</h4><p>Application produit phare, test main, conseil routine.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>MUA (Make Up Artist)</h4><p>Démonstration maquillage complet, 15 min, sur cliente.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Bar à teint</h4><p>Diagnostic fond de teint · matching parfait avec testeur.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Bar à sérum</h4><p>Conseil routine soin · application sur poignet.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre formats. Une logique commune : faire essayer, faire ressentir, faire repartir avec une routine.</div>
+</section>
+
+<!-- ═══ SLIDE 49 · §04.7 ENRÔLEMENT FIDÉLITÉ ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.7</div><h2>Enrôlement <em>fidélité</em></h2></div>
+  <div class="split reveal"><img src="img/beauty-portrait.jpg" alt="Fidélité" loading="lazy"><div class="text-side">
+    <h3>Chaque interaction qualifiée devient une opportunité d'embarquement</h3>
+    <p style="margin-bottom:1rem">Le programme fidélité Monoprix est l'outil de rétention le plus puissant à disposition de la conseillère. Notre engagement : intégrer l'invitation fidélité au cœur du parcours de conseil — pas comme un sujet caisse, mais comme un sujet routine.</p>
+    <p>La cliente qui repart avec une routine personnalisée doit aussi repartir avec son inscription.</p>
+  </div></div>
+  <div class="quote-block reveal"><p>Une cliente fidélisée vaut 3,5× une cliente ponctuelle (référence retail).</p></div>
+</section>
+
+<!-- ═══ SLIDE 50 · §04.8 GESTION ESPACE DE VENTE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.8</div><h2>Gestion de l'espace <em>de vente</em></h2><div class="subtitle">Ce qui change avec la nouvelle CDC 2027</div></div>
+  <div class="two-col-compare reveal">
+    <div class="compare-col left" style="background:rgba(74,53,64,.04)">
+      <h4>L'ancien modèle</h4>
+      <ul>
+        <li>Conseillère au comptoir, posture statique</li>
+        <li>Périmètre limité à un univers</li>
+        <li>Animation déclenchée par les marques</li>
+        <li>Reporting mensuel agrégé</li>
+      </ul>
+    </div>
+    <div class="compare-col right" style="background:rgba(184,150,90,.04)">
+      <h4>Le modèle 2027</h4>
+      <ul>
+        <li>Conseillère mobile, parcours active</li>
+        <li>Trois univers maîtrisés (MU/Parfu/Para)</li>
+        <li>Animation pilotée par Monoprix + Pénélope</li>
+        <li>Reporting J+10 magasin par magasin</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Une posture nouvelle. Un même métier — exercé différemment.</div>
+</section>
+
+<!-- ═══ SLIDE 51 · §04.9 FACE AU PRIX ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.9</div><h2>Face au prix · <em>la grammaire de la valeur</em></h2><div class="subtitle">Quand Normal s'installe à côté, voici ce qui change</div></div>
+  <div class="two-col-compare reveal">
+    <div class="compare-col left" style="background:rgba(74,53,64,.04)">
+      <h4>Le client chez Normal</h4>
+      <ul>
+        <li>Trouve un produit pas cher</li>
+        <li>Pas de conseil personnalisé</li>
+        <li>Aucune routine recommandée</li>
+        <li>Aucune fidélisation enseigne</li>
+      </ul>
+    </div>
+    <div class="compare-col right" style="background:rgba(184,150,90,.04)">
+      <h4>La même cliente chez Monoprix × Pénélope</h4>
+      <ul>
+        <li>Trouve la routine adaptée à son besoin</li>
+        <li>Reçoit un diagnostic gratuit</li>
+        <li>Repart avec 2-3 produits cohérents (panier 17,33 €)</li>
+        <li>Est enrôlée fidélité + suivie sur 12 mois</li>
+      </ul>
+    </div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Le prix attire. Le conseil retient. La fidélité fait la différence à 12 mois.</div>
+</section>
+
+<!-- ═══ SLIDE 52 · CITATION PARI DE LA VALEUR ═══ -->
+<section class="dark-section-deep">
+  <div class="full-width-quote reveal"><p>Le plan compétitivité prix Monoprix abaisse l'étiquette de 10 %. Notre rôle de conseillère, c'est de faire percevoir une valeur supérieure. Une routine personnalisée vaut plus qu'un rabais.</p><div class="attribution">Le pari de la valeur · Pénélope 2027</div></div>
+</section>
+
+<!-- ═══ SLIDE 53 · §04.X INCLUSIVITÉ ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.X</div><h2>Inclusivité dans <em>le geste</em></h2><div class="subtitle">Toutes les carnations. Tous les cheveux. Tous les genres.</div></div>
+  <div class="split reveal"><img src="img/beauty-store.jpg" alt="Inclusivité" loading="lazy"><div class="text-side">
+    <h3>Le marché capillaire texturé en croissance. La beauté masculine en accélération.</h3>
+    <p style="margin-bottom:1rem">Curls Matter étendu à 150 Monoprix en mars 2025. La Gen Z exige l'inclusivité dans le conseil. Notre formation continue couvre toutes les carnations, toutes les textures, tous les genres. Le module inclusivité fait partie intégrante de Glow Up 3.0 — pas un add-on optionnel.</p>
+    <p>Une conseillère qui sait conseiller toutes les peaux est une conseillère qui transforme tous les visiteurs.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">100 %</div><div class="label">Carnations couvertes en formation</div></div>
+      <div class="stat"><div class="value">Texturés</div><div class="label">Module dédié cheveux & ongles</div></div>
+      <div class="stat"><div class="value">Mixte</div><div class="label">Pitch homme & Gen Z</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 54 · §04.10 RÈGLES D'OR ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 04.10</div><h2>Les règles d'or <em>de la conseillère</em></h2><div class="subtitle">Six commandements qui structurent chaque interaction</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Toujours sourire</h4><p>Première impression chaleureuse, contact visuel à chaque approche.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Écouter avant</h4><p>Diagnostic d'abord. Reco ensuite. Jamais l'inverse.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Multimarque</h4><p>Recommander la meilleure routine, pas la marque préférée.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Multi-rayons</h4><p>Traverser les univers — maquillage, soin, parfum, ongles.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Enrôler</h4><p>Chaque interaction qualifiée doit déboucher sur la fidélité.</p></div></div>
+    <div class="pillar"><div class="num">06</div><div class="content"><h4>Suivre</h4><p>Booking prestation, contact post-visite, ré-engagement.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Six règles. Une signature reconnaissable au comptoir Monoprix.</div>
+</section>
+
+<!-- ═══ SLIDE 55 · PARTIE 5 BAND ═══ -->
+<div class="hero-band" id="humain"><img class="bg-img" src="img/training.jpg" alt="Formation" loading="lazy"><div class="hero-text"><div class="overline">Partie cinq</div><h2>Le capital humain — <em>talents, formation, fidélisation</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">130 conseillères, une école au 9ᵉ, un programme de formation continue.</p></div></div>
+
+<!-- ═══ SLIDE 56 · §05.1 PROFIL TYPE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.1</div><h2>Profil type <em>conseillère</em></h2><div class="subtitle">Une équipe stable, expérimentée, fidèle</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">37 ans</div><div class="label">Âge moyen</div></div>
+    <div class="stat"><div class="value">5+</div><div class="unit">ans</div><div class="label">Ancienneté moyenne</div></div>
+    <div class="stat"><div class="value">92 %</div><div class="label">Femmes</div></div>
+    <div class="stat"><div class="value">Bac+2</div><div class="label">Niveau type (esthétique/MUC)</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Une équipe stable, expérimentée, fidèle — c'est le socle qui permet l'exigence.</div>
+</section>
+
+<!-- ═══ SLIDE 57 · §05.2 RECRUTEMENT ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.2</div><h2>Recrutement</h2><div class="subtitle">Cinq étapes pour qualifier une candidate</div></div>
+  <div class="phases reveal">
+    <div class="phase"><div class="step">01</div><h4>Sourcing</h4><p>Réseau écoles esthétique + cooptation + LinkedIn ciblé.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Entretien RH</h4><p>Motivation, posture, fit culturel.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Test produit</h4><p>Diagnostic peau, recommandation, geste de vente.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Mise en situation</h4><p>Demi-journée en magasin témoin, observée.</p></div>
+    <div class="phase"><div class="step">05</div><h4>Décision conjointe</h4><p>Validation Pénélope + chef de secteur Monoprix.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Un process à 5 étapes — taux d'acceptation calibré pour préserver la qualité du socle.</div>
+</section>
+
+<!-- ═══ SLIDE 58 · §05.3 ONBOARDING ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.3</div><h2>Onboarding <em>30/60/90 jours</em></h2><div class="subtitle">Une montée en puissance structurée</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">J-15→J0</div><h4>Pre-boarding</h4><p>Welcome pack, accès LMS, présentation parc Monoprix.</p></div>
+    <div class="phase"><div class="step">J0</div><h4>Beauty Immersion Day</h4><p>Journée intégration au siège — culture, produits, gestes.</p></div>
+    <div class="phase"><div class="step">J+30</div><h4>Accélération terrain</h4><p>Coaching binôme avec senior, premier reporting.</p></div>
+    <div class="phase"><div class="step">J+90</div><h4>Beauty Data & IA</h4><p>Module data, certification Beauty Expert Premium Monoprix.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre étapes. Une certification à la clé : Beauty Expert Premium Monoprix.</div>
+</section>
+
+<!-- ═══ SLIDE 59 · §05.4 ACADÉMIE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.4</div><h2>L'Académie <em>Beauty Factory</em></h2></div>
+  <div class="split reveal"><img src="img/team-meeting.jpg" alt="Académie" loading="lazy"><div class="text-side">
+    <h3>Une école dédiée au 9ᵉ arrondissement</h3>
+    <p style="margin-bottom:1rem">Aucun autre prestataire de conseil beauté en France ne dispose d'une école physique propre. C'est notre singularité opérationnelle : un lieu où l'on forme, on certifie, on retrouve une communauté professionnelle.</p>
+    <p>Pas une plateforme distante — une salle au 9ᵉ, avec testeurs, miroirs, formateurs en chair et en os. C'est aussi un argument de recrutement : la conseillère Pénélope sait qu'elle entrera dans une école, pas dans un job temporaire.</p>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 60 · §05.5 GLOW UP 3.0 TROIS PILIERS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.5</div><h2>Glow Up 3.0 · <em>trois piliers</em></h2><div class="subtitle">Le programme de formation référence Pénélope</div></div>
+  <div class="grid-3 reveal">
+    <div class="card"><div class="num">01</div><h3>Hybridation Smart Learning</h3><p>Présentiel à l'académie + mobile-first via LMS dédié.</p></div>
+    <div class="card"><div class="num">02</div><h3>Pilotage performance comportementale</h3><p>Mesure des progrès au geste, pas seulement aux quiz.</p></div>
+    <div class="card"><div class="num">03</div><h3>Expérience collaboratrice premium J1</h3><p>Onboarding 4 phases · certification Beauty Expert Premium Monoprix.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Un programme co-construit avec Monoprix, certifiant, mesurable.</div>
+</section>
+
+<!-- ═══ SLIDE 61 · §05.5 GLOW UP QUATRE PHASES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.5 · Suite</div><h2>Glow Up 3.0 · <em>quatre phases</em></h2><div class="subtitle">Le déroulé d'une formation Beauty Expert Premium Monoprix</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Pre-boarding</h4><p>J-15 → J0 · welcome pack, accès LMS, contenu d'attente.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Beauty Immersion</h4><p>J0 · journée intégration siège · produits, marques, gestes.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Accélération</h4><p>J+30 · terrain coaché, premiers reportings, feedback fin.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Data & IA</h4><p>J+90 · module data, dashboard Crystal, certification finale.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre phases. Une certification reconnue : Beauty Expert Premium Monoprix.</div>
+</section>
+
+<!-- ═══ SLIDE 62 · §05.6 YOU CAN LEARN ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.6</div><h2>You Can Learn · <em>Improvisaction</em></h2></div>
+  <div class="split reveal" style="direction:rtl"><img src="img/training.jpg" alt="You Can Learn" loading="lazy" style="direction:ltr"><div class="text-side" style="direction:ltr">
+    <h3>Douze capsules. Mobile-first. Joué par Jean-Charles Mulier.</h3>
+    <p style="margin-bottom:1rem">Co-produit avec Improvisaction, le programme You Can Learn s'adresse aux conseillères en format mobile-first : 12 capsules de 1m30 à consommer entre deux moments.</p>
+    <p>Quatre blocs : Légitimité & Identité · Shift Consultatif · Performance Intelligente · Projection & Ambition. Les capsules sont jouées par Jean-Charles Mulier, comédien Jamel Comedy Club — pour décaler le ton, créer l'envie, démocratiser la posture conseil.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">12</div><div class="label">Capsules · 1m30 chacune</div></div>
+      <div class="stat"><div class="value">4</div><div class="label">Blocs thématiques</div></div>
+      <div class="stat"><div class="value">Mobile</div><div class="label">Format first</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 63 · §05.7 FORMATION CONTINUE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.7</div><h2>Formation continue <em>Monoprix</em></h2><div class="subtitle">Un module dédié pour chaque chantier 2027</div></div>
+  <div class="quote-block reveal"><p>Aucun lancement sans formation préalable. Aucune exception.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Pour chaque nouveauté du calendrier — K-Beauty, Mylee, Madara, sortie MMU, plan compétitivité prix, interdiction PFAS — un module de formation dédié est intégré à Glow Up 3.0 avant le déploiement terrain.</p><p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">Logique : aucune conseillère ne se retrouve face à une cliente sans avoir été formée préalablement. Les briefs ne suffisent pas — il faut le geste, le pitch, la démo.</p></div>
+  <div class="reveal" style="text-align:center"><span class="tag">Engagement : 100 % des conseillères concernées formées avant J0 du lancement</span></div>
+</section>
+
+<!-- ═══ SLIDE 64 · §05.8 SÉMINAIRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.8</div><h2>Séminaire <em>annuel</em></h2><div class="subtitle">Un temps fort de cohésion et de pilotage</div></div>
+  <div class="stat-grid reveal">
+    <div class="stat"><div class="value">1</div><div class="label">Séminaire annuel · 1 journée + soirée</div></div>
+    <div class="stat"><div class="value">130</div><div class="label">Conseillères réunies</div></div>
+    <div class="stat"><div class="value">≤ 65 K€</div><div class="label">Enveloppe budgétaire (CDC 2027)</div></div>
+    <div class="stat"><div class="value">Bilan + Roadmap</div><div class="label">Format type · perf + projection</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Un format calibré CDC. Une enveloppe respectée. Un effet de cohésion mesurable sur le turnover.</div>
+</section>
+
+<!-- ═══ SLIDE 65 · §05.9 VEILLE TENDANCES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.9</div><h2>Veille <em>tendances</em></h2><div class="subtitle">Quatre canaux de veille pour rester en avance</div></div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Salons & événements</h4><p>Cosmoprof, Beauty Tech, MakeUp in Paris — présence active.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Réseaux sociaux</h4><p>TikTok, Instagram — détection tendances Gen Z hebdomadaire.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Études marché</h4><p>Circana, Mintel, Mordor — abonnements et veille structurée.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Réseau fournisseurs</h4><p>Échanges avec L'Oréal, Pierre Fabre, Galderma, KDC.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Veille hebdomadaire condensée → newsletter conseillères → modules de formation déclenchés.</div>
+</section>
+
+<!-- ═══ SLIDE 66 · §05.10 PLAN DE CARRIÈRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.10</div><h2>Fidélisation · <em>plan de carrière</em></h2><div class="subtitle">Cinq étapes d'évolution chez Pénélope</div></div>
+  <div class="phases reveal">
+    <div class="phase"><div class="step">01</div><h4>Conseillère</h4><p>Entrée poste — montée en compétences 24 mois.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Conseillère senior</h4><p>Référente magasin, tutorat juniors, prestations payantes.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Cheffe de secteur</h4><p>5-8 magasins · pilotage performance et formation.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Responsable régional</h4><p>30+ magasins · pilotage RH, recrutement, qualité.</p></div>
+    <div class="phase"><div class="step">05</div><h4>Direction opérationnelle</h4><p>Comité dirigeant · stratégie compte client.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Une trajectoire ouverte. La conseillère sait qu'elle peut grandir chez Pénélope. C'est ce qui retient.</div>
+</section>
+
+<!-- ═══ SLIDE 67 · §05.11 GESTION DES ABSENCES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.11</div><h2>Gestion des <em>absences</em></h2><div class="subtitle">Continuité de service · notre dispositif de remplacement</div></div>
+  <div class="split reveal"><img src="img/team-success.jpg" alt="Équipe" loading="lazy"><div class="text-side">
+    <h3>Un pool national. Un dispositif d'alerte automatisé. Une continuité maximale.</h3>
+    <p style="margin-bottom:1rem">Maladie, congé, absence imprévue : la cliente n'attend pas. Notre dispositif :</p>
+    <ul class="bullet-list">
+      <li>Un pool national de remplaçantes formées, capables d'intervenir sur le parc Monoprix en moins de 48 h</li>
+      <li>Une équipe encadrante régionale qui priorise et active</li>
+      <li>Un système d'alerte automatisé connecté au pointage QR dynamique</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 68 · §05.12 ÉQUIPE ENCADRANTE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.12</div><h2>Équipe encadrante <em>dédiée</em></h2><div class="subtitle">Une organisation à quatre niveaux pour le compte Monoprix</div></div>
+  <div class="grid-2 reveal">
+    <div class="card"><div class="num">01</div><h3>Directeur de compte</h3><p>Interlocuteur unique direction Monoprix · COPIL trimestriel.</p></div>
+    <div class="card"><div class="num">02</div><h3>Responsables régionaux</h3><p>Pilotage par grande région · revue mensuelle.</p></div>
+    <div class="card"><div class="num">03</div><h3>Chefs de secteur</h3><p>5-8 magasins chacun · visite hebdomadaire Top 30 (CDC).</p></div>
+    <div class="card"><div class="num">04</div><h3>Formateurs</h3><p>Animation académie + modules ciblés · pool de 4 dédiés Monoprix.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Une équipe dédiée. Un interlocuteur unique. Une remontée de terrain structurée.</div>
+</section>
+
+<!-- ═══ SLIDE 69 · §05.X QUATRE PUBLICS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.X</div><h2>Quatre publics <em>à conquérir</em></h2><div class="subtitle">Cibler la beauté masculine et la Gen Z</div></div>
+  <div class="grid-4 reveal">
+    <div class="card"><div class="num">01</div><h3>Homme</h3><p>Skincare en croissance · pitch dédié, routine simple.</p></div>
+    <div class="card"><div class="num">02</div><h3>Gen Z</h3><p>Codes TikTok beauty, K-Beauty, glass skin · conseillère ambassadrice digitale.</p></div>
+    <div class="card"><div class="num">03</div><h3>Clientes matures</h3><p>Anti-âge, conseil expert, fidélité haute valeur.</p></div>
+    <div class="card"><div class="num">04</div><h3>Peaux texturées</h3><p>Curls Matter, K-Beauty, inclusivité capillaire et carnations.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre publics. Quatre pitches. Une seule grammaire.</div>
+</section>
+
+<!-- ═══ SLIDE 70 · §05.X RENFORTS RH ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 05.X · Renforts</div><h2>Dispositif renforts · <em>calendrier RH 2027</em></h2><div class="subtitle">Le pool de remplaçantes formées absorbe les pics</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(6,1fr)">
+    <div class="phase"><h4>Jan-Fév</h4><p>Beauty Week · renforts ciblés</p></div>
+    <div class="phase"><h4>Mai</h4><p>Fête des Mères · renforts flagship</p></div>
+    <div class="phase"><h4>Juin-Août</h4><p>K-Beauty + MUA · renforts qualifiés</p></div>
+    <div class="phase"><h4>Oct</h4><p>Octobre Rose · renforts solidaires</p></div>
+    <div class="phase"><h4>Nov</h4><p>Black Friday · renforts caisse beauté</p></div>
+    <div class="phase"><h4>Déc</h4><p>Noël · renforts maximum</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Un pool national. Un dispositif anticipé. Aucun pic sans couverture.</div>
+</section>
+
+<!-- ═══ SLIDE 71 · PARTIE 6 BAND ═══ -->
+<div class="hero-band" id="pilotage"><img class="bg-img" src="img/dashboard-data.jpg" alt="Pilotage" loading="lazy"><div class="hero-text"><div class="overline">Partie six</div><h2>Le pilotage <em>de la performance</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Transparence totale. KPIs partagés. Reporting J+10. Plans correctifs immédiats.</p></div></div>
+
+<!-- ═══ SLIDE 72 · §06.1 ORGANISATION TERRAIN ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.1</div><h2>Organisation <em>terrain</em></h2><div class="subtitle">Quatre niveaux de pilotage opérationnel</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Conseillère</h4><p>Reporting hebdo flash + observations terrain.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Chef de secteur</h4><p>Visite hebdo Top 30 · revue mensuelle KPI magasin.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Responsable régional</h4><p>Revue mensuelle perf · plans correctifs activés.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Direction compte</h4><p>COPIL trimestriel Monoprix · arbitrages stratégiques.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre niveaux. Une logique : faire remonter vite, décider vite, corriger vite.</div>
+</section>
+
+<!-- ═══ SLIDE 73 · §06.2 TOP 30 ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.2</div><h2>Top 30 <em>magasins</em></h2><div class="subtitle">Le périmètre prioritaire défini par Monoprix</div></div>
+  <div class="split reveal"><img src="img/analytics.jpg" alt="Top 30" loading="lazy"><div class="text-side">
+    <h3>30 magasins prioritaires. Une fréquence non négociable.</h3>
+    <p style="margin-bottom:1rem">Le CDC 2027 définit un Top 30 magasins prioritaires — flagships parisiens, magasins témoin du nouveau concept, points de vente à fort potentiel beauté.</p>
+    <p>Notre engagement contractuel : visite hebdomadaire RS (responsable secteur) sur chacun de ces 30 magasins, sans exception. Reporting J+10 dédié, plans correctifs déclenchés au mois.</p>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 74 · §06.3 VISITES MYSTÈRES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.3</div><h2>Visites <em>mystères</em></h2><div class="subtitle">Quatre critères évalués sur grille standardisée</div></div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Accueil & posture</h4><p>Sourire, contact visuel, proactivité dans l'approche.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Diagnostic & écoute</h4><p>Qualité du questionnement, pertinence du besoin identifié.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Recommandation</h4><p>Cohérence routine, multimarque, multi-rayons.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Conclusion & fidélité</h4><p>Enrôlement, suite proposée, qualité du closing.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Visites mystères trimestrielles · grille co-construite Pénélope × Monoprix · note partagée dans le reporting.</div>
+</section>
+
+<!-- ═══ SLIDE 75 · §06.4 ±20% ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.4</div><h2>Fluctuations de périmètre · <em>±20 %</em></h2><div class="subtitle">Le contrat-cadre prévoit une variabilité opérationnelle</div></div>
+  <div class="quote-block reveal"><p>Flexibilité native. Pas de renégociation. Pas de surprise.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Le CDC 2027 prévoit la possibilité pour Monoprix d'ajuster le périmètre conseillère de ±20 % en cours d'exercice — pour absorber les remodelings, les fermetures temporaires, les inaugurations.</p><p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">Notre engagement : absorber cette variabilité sans renégociation, dans une logique de partenariat. Le pool national de remplaçantes est dimensionné en conséquence. Cette flexibilité est notre force — pas notre concession.</p></div>
+</section>
+
+<!-- ═══ SLIDE 76 · §06.5 DIFFÉRENTIEL CA ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.5</div><h2>Engagement · différentiel CA <em>mag animé</em></h2><div class="subtitle">Dépasser le seuil minimum demandé par le CDC</div></div>
+  <div class="quote-block reveal"><p>Au-dessus du seuil. Toujours. Le chiffre exact validé en COPIL avant remise.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Le CDC 2027 fixe un seuil minimum de +4 pts de différentiel CA entre magasin animé et magasin non-animé. Notre engagement contractuel : dépasser systématiquement ce seuil minimum.</p><p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">Le différentiel précis que nous nous engageons à tenir sera arbitré en COPIL Pénélope avant remise — fonction des données 2025 complètes, du périmètre Top 30 retenu, et des plans d'animation co-construits. Transparence absolue.</p></div>
+</section>
+
+<!-- ═══ SLIDE 77 · §06.6.1 KPIs COMMERCIAUX ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.6.1</div><h2>KPIs <em>commerciaux</em></h2><div class="subtitle">Cinq indicateurs suivis mensuellement</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(5,1fr)">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>CA / mag / mois</h4><p>Évolution vs N-1, indice vs benchmark.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Panier moyen</h4><p>Niveau et stabilité — ref. 17,33 € 2025.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>UPT</h4><p>Unit Per Transaction · capacité cross-sell.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Indice CA</h4><p>Comparatif vs benchmark interne et marché.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Différentiel mag animé</h4><p>Au-dessus du seuil CDC · cible en COPIL.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq KPIs commerciaux. Reporting J+10 magasin par magasin.</div>
+</section>
+
+<!-- ═══ SLIDE 78 · §06.6.2 KPIs QUALITÉ ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.6.2</div><h2>KPIs <em>qualité</em></h2><div class="subtitle">Cinq indicateurs de la qualité du conseil</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(5,1fr)">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Note visite mystère</h4><p>Sur 100 · grille co-construite avec Monoprix.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>NPS cliente</h4><p>Net Promoter Score sortie magasin (app).</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Taux d'enrôlement</h4><p>Fidélité Monoprix par interaction qualifiée.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Taux de réclamation</h4><p>Volume et gravité des réclamations client.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Conformité process</h4><p>Respect grille tenue, posture, parcours.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq KPIs qualité. Les seuils précis sont validés en COPIL avant remise.</div>
+</section>
+
+<!-- ═══ SLIDE 79 · §06.6.3 KPIs RH ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.6.3</div><h2>KPIs <em>RH</em></h2><div class="subtitle">Quatre indicateurs de la santé du dispositif humain</div></div>
+  <div class="grid-4 reveal">
+    <div class="card"><div class="num">01</div><h3>Taux de présence</h3><p>Cible à valider en COPIL Pénélope avant remise.</p></div>
+    <div class="card"><div class="num">02</div><h3>Turnover annuel</h3><p>Cible à valider en COPIL · enjeu fidélisation.</p></div>
+    <div class="card"><div class="num">03</div><h3>Ancienneté moyenne</h3><p>Ref. 5+ ans · maintien et progression.</p></div>
+    <div class="card"><div class="num">04</div><h3>Heures formation/an</h3><p>Par conseillère · Glow Up + You Can Learn.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre KPIs RH. Toutes les cibles d'engagement sont validées en COPIL avant remise.</div>
+</section>
+
+<!-- ═══ SLIDE 80 · §06.7 PÉNALITÉS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.7</div><h2>Pénalités · <em>le cadre contractuel</em></h2></div>
+  <div class="quote-block reveal"><p>Pénalités acceptées. Conditions co-construites. Plafond négocié.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Le CDC 2027 prévoit un mécanisme de pénalités attaché aux KPIs critiques. Notre position : accepter le principe — c'est sain, c'est partenarial. Mais en demander la co-construction avant signature :</p>
+  <ul class="bullet-list" style="margin-top:.8rem">
+    <li>Des seuils proportionnés à la matérialité opérationnelle</li>
+    <li>Une logique de plan correctif avant pénalité au premier écart</li>
+    <li>Un plafond annuel négocié — pas de pénalité illimitée</li>
+  </ul></div>
+</section>
+
+<!-- ═══ SLIDE 81 · §06.8 GOUVERNANCE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.8</div><h2>Gouvernance</h2><div class="subtitle">Trois instances de pilotage à fréquences différentes</div></div>
+  <div class="grid-3 reveal">
+    <div class="card"><div class="num">01</div><h3>Comité mensuel</h3><p>RS Pénélope × responsable cat. Monoprix · revue perf magasin.</p></div>
+    <div class="card"><div class="num">02</div><h3>Comité trimestriel</h3><p>Direction compte × direction beauté Monoprix · pilotage tactique.</p></div>
+    <div class="card"><div class="num">03</div><h3>COPIL semestriel</h3><p>Direction générale × direction Monoprix · arbitrages stratégiques.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Trois instances. Une discipline : décider à la bonne fréquence, au bon niveau.</div>
+</section>
+
+<!-- ═══ SLIDE 82 · §06.9 REPORTING J+10 ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.9</div><h2>Reporting <em>J+10</em></h2><div class="subtitle">Le mois M livré le 10 du mois M+1</div></div>
+  <div class="split reveal"><img src="img/dashboard-data.jpg" alt="Reporting" loading="lazy"><div class="text-side">
+    <h3>Reporting J+10. Production assurée. Format co-construit.</h3>
+    <p style="margin-bottom:1rem">Notre engagement contractuel : la totalité du reporting mensuel — magasin par magasin, conseillère par conseillère, KPI par KPI — est livrée le 10 du mois suivant.</p>
+    <p>Cela couvre : performance commerciale, qualité, RH, conformité, écarts, plans correctifs proposés. Le système d'information Pénélope (Dashboard Crystal) génère le rapport en temps réel — l'engagement J+10 est une production assurée, pas un objectif.</p>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 83 · §06.10 PLANS CORRECTIFS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 06.10</div><h2>Plans <em>correctifs</em></h2><div class="subtitle">Le déclenchement automatique d'un plan d'action</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Détection</h4><p>Alerte automatique Dashboard Crystal · écart vs seuil.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Diagnostic</h4><p>Visite RS sous 5 jours · analyse cause racine.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Plan d'action</h4><p>Formalisé, daté, responsable identifié · partagé Monoprix.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Revue</h4><p>Suivi mensuel jusqu'à retour seuil · pas de pénalité au 1er écart.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Pas d'alerte sans plan. Pas de plan sans suivi. Pas de pénalité avant correction.</div>
+</section>
+
+<!-- ═══ SLIDE 84 · CITATION GOUVERNANCE ═══ -->
+<section class="dark-section-deep">
+  <div class="full-width-quote reveal"><p>Nous ne piloterons jamais Monoprix en vous présentant des chiffres que nous ne sommes pas prêts à défendre publiquement.</p><div class="attribution">Engagement de gouvernance · Pénélope 2027</div></div>
+</section>
+
+<!-- ═══ SLIDE 85 · PARTIE 7 BAND ═══ -->
+<div class="hero-band" id="innovation"><img class="bg-img" src="img/mist-mirror.jpg" alt="Innovation" loading="lazy"><div class="hero-text"><div class="overline">Partie sept</div><h2>L'innovation au cœur <em>de notre performance</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Terminal mobile, dashboard temps réel, miroir intelligent, IA conseil.</p></div></div>
+
+<!-- ═══ SLIDE 86 · §07.1 ÉCOSYSTÈME DIGITAL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.1</div><h2>L'écosystème <em>digital</em></h2><div class="subtitle">Six briques technologiques au service de la conseillère</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Terminal mobile</h4><p>Android, écran ≥ 6", MDM mode KIOSK, antivol.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>LMS embarqué</h4><p>Capsules You Can Learn · pas de besoin desktop.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Diagnostic peau</h4><p>API externe (Perfect Corp / Alioze) · résultat local.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Reporting déclaratif</h4><p>Saisie terrain rapide · synchro Dashboard Crystal.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Suivi perf BI</h4><p>Tableau de bord conseillère · objectifs visibles.</p></div></div>
+    <div class="pillar"><div class="num">06</div><div class="content"><h4>Messagerie pro</h4><p>Communication encadrement · alertes magasin.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Six modules. Un seul terminal. Une conseillère équipée comme un commercial premium.</div>
+</section>
+
+<!-- ═══ SLIDE 87 · §07.2 TERMINAL MOBILE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.2</div><h2>Le terminal <em>mobile</em></h2><div class="subtitle">Android, MDM mode KIOSK, antivol — la conseillère équipée pour 2027</div></div>
+  <div class="split reveal"><img src="img/analytics.jpg" alt="Terminal" loading="lazy"><div class="text-side">
+    <h3>Spécifications CDC 2027</h3>
+    <ul class="bullet-list">
+      <li>Android dernière génération, écran ≥ 6"</li>
+      <li>Cordon antivol et étui renforcé</li>
+      <li>MDM (Mobile Device Management) en mode KIOSK</li>
+      <li>Pas d'accès personnel · usage exclusivement pro</li>
+      <li>Wipe à distance en cas de perte</li>
+      <li>Géolocalisation magasin pour pointage QR dynamique</li>
+    </ul>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">100 %</div><div class="label">Des 130 conseillères équipées avant fin T1 2027</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 88 · §07.3 SIX MODULES EMBARQUÉS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.3</div><h2>Six modules <em>embarqués</em></h2><div class="subtitle">Le parcours typique d'une conseillère sur son terminal</div></div>
+  <div class="grid-3 reveal" style="grid-template-columns:repeat(6,1fr)">
+    <div class="phase"><h4>Pointage</h4><p>QR dynamique géolocalisé · arrivée et départ magasin.</p></div>
+    <div class="phase"><h4>Formation</h4><p>Capsule You Can Learn 1m30 · entre deux clientes.</p></div>
+    <div class="phase"><h4>Diagnostic</h4><p>Cliente accepte · scan visage · routine recommandée.</p></div>
+    <div class="phase"><h4>Reporting</h4><p>Saisie déclarative perf flash · sync auto.</p></div>
+    <div class="phase"><h4>Perf View</h4><p>Tableau de bord personnel · objectif vs réalisé.</p></div>
+    <div class="phase"><h4>Messagerie</h4><p>Alerte CS · message direction · veille.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Six fonctions. Un seul outil. Une expérience conseillère premium.</div>
+</section>
+
+<!-- ═══ SLIDE 89 · §07.4 RGPD ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.4</div><h2>RGPD et sécurité <em>des données</em></h2><div class="subtitle">Quatre piliers de la conformité totale</div></div>
+  <div class="grid-4 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Diagnostic peau</h4><p>Données client traitées en local · pas de stockage permanent · consentement explicite.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Terminal mobile</h4><p>MDM, wipe à distance, blocage usages personnels — section 4 CDC.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Reporting</h4><p>Cloisonnement DSI Pénélope / Monoprix · accès par profil et droits.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Fidélité</h4><p>Données client propriété Monoprix · Pénélope = simple opérateur.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Conformité RGPD totale. Audit annuel disponible en Annexe 14.</div>
+</section>
+
+<!-- ═══ SLIDE 90 · §07.5 PLAN ÉCLAT ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.5</div><h2>Le Plan Éclat · <em>cinq axes</em></h2><div class="subtitle">Le programme d'optimisation continue Pénélope</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>Nouveautés / displays</h4><p>Mise en avant produits stratégiques · taux de présence linéaire.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Brand Visible Impact</h4><p>Mesure visibilité marques challengées par Monoprix.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Insights clients</h4><p>Remontée terrain qualitative · feedback clientes.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Stocks</h4><p>Détection ruptures, surstocks, anomalies linéaire.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Beauty Performance Live</h4><p>Visites Focus Excellence · qualité flash.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq axes. Un programme rodé. Une remontée terrain structurée pour Monoprix.</div>
+</section>
+
+<!-- ═══ SLIDE 91 · §07.6 DASHBOARD CRYSTAL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.6</div><h2>Dashboard <em>Crystal</em></h2><div class="subtitle">Le tableau de bord temps réel co-construit avec Monoprix</div></div>
+  <div class="split reveal"><img src="img/analytics.jpg" alt="Dashboard" loading="lazy"><div class="text-side">
+    <h3>La source unique de vérité — utilisée en COPIL, en revue mensuelle, et en plan correctif individuel</h3>
+    <p style="margin-bottom:1rem">Dashboard Crystal centralise en temps réel : CA jour/semaine/mois, performance par marque et catégorie, taux de transformation, panier moyen, classement par PdV et par conseillère.</p>
+    <p>Accès par profil : direction Monoprix voit l'agrégat parc · responsables catégorie voient leur périmètre · chefs de secteur voient leurs magasins · conseillères voient leur fiche perso.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">Temps réel</div><div class="label">Pas d'attente fin de mois</div></div>
+      <div class="stat"><div class="value">Multi-niv.</div><div class="label">Direction → conseillère</div></div>
+      <div class="stat"><div class="value">API</div><div class="label">Connecté NeoGrid</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 92 · §07.7 QUATRE INNOVATIONS 2027 ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.7</div><h2>Quatre innovations <em>2027</em></h2><div class="subtitle">Le pipeline d'innovation pour les magasins flagship</div></div>
+  <div class="grid-4 reveal">
+    <div class="card"><div class="num">01</div><h3>Miroir intelligent</h3><p>Pilote 5 magasins · diagnostic peau + try-on AR · 2027.</p></div>
+    <div class="card"><div class="num">02</div><h3>App tablette conseil</h3><p>Catalogue routine personnalisée · push fidélité · 2027.</p></div>
+    <div class="card"><div class="num">03</div><h3>Simulateur MU en RA</h3><p>Essai virtuel rouge à lèvres / fond de teint · pilote 2027.</p></div>
+    <div class="card"><div class="num">04</div><h3>Coach IA mix</h3><p>Avatar + expert live · disponibilité étendue · 2028.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre pilotes. Mesurés. Industrialisés s'ils délivrent. Pas de gadget sans ROI.</div>
+</section>
+
+<!-- ═══ SLIDE 93 · §07.8 ON + OFF ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.8</div><h2>On + Off · <em>le parcours hybride</em></h2><div class="subtitle">La conseillère, point d'ancrage du parcours omnicanal</div></div>
+  <div class="quote-block reveal"><p>Le digital prolonge le conseil. La conseillère reste l'ancrage humain.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">On + Off est notre brique stratégique : faire converger le parcours digital (monoprix.fr, app, réseaux sociaux) et le parcours magasin via la conseillère.</p>
+  <p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">La cliente qui a réservé un diagnostic en ligne est attendue, ses préférences sont préchargées. La cliente qui repart avec une routine reçoit un suivi par l'app — pas par mail générique. La conseillère devient l'humain du parcours.</p>
+  <p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">C'est exactement ce qui distingue Monoprix de Normal — et ce qui justifie le ticket plus élevé.</p></div>
+</section>
+
+<!-- ═══ SLIDE 94 · §07.9 SEO LOCAL ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 07.9</div><h2>Amplification <em>SEO local</em></h2><div class="subtitle">50 % des recherches Monoprix sont géolocalisées</div></div>
+  <div class="split reveal" style="direction:rtl"><img src="img/paris-street.jpg" alt="SEO local" loading="lazy" style="direction:ltr"><div class="text-side" style="direction:ltr">
+    <h3>50 % des requêtes Google citant Monoprix sont géolocalisées</h3>
+    <p style="margin-bottom:1rem">L'étude SEO Alioze sur le compte Monoprix révèle un insight massif : 50 % des requêtes Google citant la marque Monoprix sont géolocalisées (« Monoprix Montparnasse beauté », « Monoprix Bastille parfum »).</p>
+    <p>Exemple Monoprix Montparnasse : 2 800 avis Google, note 3,8/5. Chaque avis cite parfois la qualité du conseil — ou son absence. La conseillère a un impact mesurable sur l'image enseigne au niveau local.</p>
+    <div class="stat-grid" style="margin-top:1rem">
+      <div class="stat"><div class="value">50 %</div><div class="label">Requêtes géolocalisées</div></div>
+      <div class="stat"><div class="value">2 800</div><div class="label">Avis Google Montparnasse</div></div>
+      <div class="stat"><div class="value">3,8/5</div><div class="label">Note moyenne · levier identifié</div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 95 · PARTIE 8 BAND ═══ -->
+<div class="hero-band" id="transformation"><img class="bg-img" src="img/beauty-counter.jpg" alt="Transformation" loading="lazy"><div class="hero-text"><div class="overline">Partie huit</div><h2>L'accompagnement de <em>la transformation 2026-2028</em></h2><p style="font-size:.85rem;color:var(--rose-lt);margin-top:.8rem;max-width:500px;line-height:1.5">Remodeling, compétitivité prix, Beauty Week, brand image, transition propre.</p></div></div>
+
+<!-- ═══ SLIDE 96 · §08.1 ACCOMPAGNEMENT REMODELING ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.1</div><h2>Accompagnement remodeling · <em>94 mag en 4 ans</em></h2><div class="subtitle">Notre dispositif jalon par jalon</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">J-30</div><h4>Préparation</h4><p>Brief conseillère, formation flash sur nouveau concept.</p></div>
+    <div class="phase"><div class="step">J0</div><h4>Inauguration</h4><p>Renfort animation, démos flash, push fidélité.</p></div>
+    <div class="phase"><div class="step">J+30</div><h4>Stabilisation</h4><p>Mesure perf vs avant rénovation, plan correctif si écart.</p></div>
+    <div class="phase"><div class="step">J+90</div><h4>Capitalisation</h4><p>Bonnes pratiques remontées, partagées au reste du parc.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre jalons. Chaque rénovation tracée. Le ROI rénovation documenté magasin par magasin.</div>
+</section>
+
+<!-- ═══ SLIDE 97 · §08.2 STRATÉGIE OFFRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.2</div><h2>Accompagnement <em>stratégie offre</em></h2><div class="subtitle">Cinq chantiers d'offre, cinq dispositifs dédiés</div></div>
+  <div class="grid-3 reveal">
+    <div class="pillar"><div class="num">01</div><div class="content"><h4>K-Beauty</h4><p>Pitch dédié, formation, animation pilotage 30 mag.</p></div></div>
+    <div class="pillar"><div class="num">02</div><div class="content"><h4>Mylee</h4><p>Lancement ongles mai-juin · MUA dédié · prestations.</p></div></div>
+    <div class="pillar"><div class="num">03</div><div class="content"><h4>Madara</h4><p>Maquillage naturel premium · positionnement clair.</p></div></div>
+    <div class="pillar"><div class="num">04</div><div class="content"><h4>Sortie MMU</h4><p>Transition Bio/Boho/Revolution · pitch substitution.</p></div></div>
+    <div class="pillar"><div class="num">05</div><div class="content"><h4>Monop Make Up</h4><p>Repositionnement MDD historique · valorisation.</p></div></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Cinq chantiers. Cinq plans. Une exécution disciplinée jalon par jalon.</div>
+</section>
+
+<!-- ═══ SLIDE 98 · §08.3 ZOOM MYLEE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.3 · Zoom</div><h2>Accompagnement <em>Mylee</em></h2><div class="subtitle">La nouvelle catégorie ongles · mai-juin 2026</div></div>
+  <div class="split reveal"><img src="img/nails-mani.jpg" alt="Mylee" loading="lazy"><div class="text-side">
+    <h3>Formation flash sur les 130 conseillères avant J0</h3>
+    <p style="margin-bottom:1rem">Animation lancement dans les magasins flagship. MUA dédié sur les ouvertures Beauty Week. Intégration immédiate de la manucure Mylee au catalogue de prestations payantes (T2 2027 pilote, T4 2027 extension 30 magasins).</p>
+    <p>Suivi mensuel par KPI dédié : taux de pénétration en magasin, panier moyen Mylee, taux d'attache prestation.</p>
+    <div class="phases" style="margin-top:1rem">
+      <div class="phase" style="min-width:100px"><div class="step">Mai 2026</div><h4>Lancement vernis</h4></div>
+      <div class="phase" style="min-width:100px"><div class="step">Juin 2026</div><h4>Semi-permanent</h4></div>
+      <div class="phase" style="min-width:100px"><div class="step">T2 2027</div><h4>Pilote presta payante</h4></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 99 · §08.4 PLAN PRIX ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.4</div><h2>Accompagnement plan <em>compétitivité prix</em></h2><div class="subtitle">Élever la valeur perçue quand l'étiquette baisse de 10 %</div></div>
+  <div class="quote-block reveal"><p>Le prix baisse. La valeur monte. La conseillère fait la traduction.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Le plan compétitivité prix Monoprix concerne 3 388 références sur 50 magasins en 2026, avec une baisse de prix moyenne de 10 %.</p>
+  <p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">Notre dispositif : un argumentaire dédié construit avec Monoprix · un module de formation continue · un pitch qui transforme la baisse de prix en argument valeur (« la qualité de cette routine reste, le prix s'aligne »).</p>
+  <p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">La conseillère n'est pas une simple opératrice du nouveau prix — elle est l'interprète de la stratégie commerciale. C'est elle qui empêche que la baisse de prix soit lue comme une baisse de qualité.</p></div>
+</section>
+
+<!-- ═══ SLIDE 100 · §08.5 BRAND IMAGE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.5</div><h2>Pénélope · gardienne <em>brand image</em></h2><div class="subtitle">Quand Normal s'installe à côté, le conseil devient l'argument</div></div>
+  <div class="split reveal"><img src="img/beauty-portrait.jpg" alt="Brand image" loading="lazy"><div class="text-side">
+    <h3>Face à la pression prix des soft-discounters, la conseillère devient l'incarnation visible du repositionnement</h3>
+    <p style="margin-bottom:1rem">Sa tenue, son geste, son discours sont la signature Monoprix au comptoir. Elle ne vend pas seulement un produit — elle distingue Monoprix dans la rue.</p>
+    <p>C'est elle qui justifie que la cliente fasse 200 m de plus pour venir chez Monoprix plutôt que chez Normal. C'est elle qui transforme un acte d'achat en relation enseigne.</p>
+  </div></div>
+</section>
+
+<!-- ═══ SLIDE 101 · §08.6 BEAUTY WEEK ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.6</div><h2>Beauty Week et <em>campagnes d'influence</em></h2><div class="subtitle">L'amplification orchestrée des temps forts 2027</div></div>
+  <div class="quote-block reveal"><p>La cliente arrive en magasin avec l'information de la veille. La conseillère doit la trouver, la confirmer, la transformer.</p></div>
+  <div class="reveal" style="max-width:650px;margin:1rem auto"><p style="font-size:.82rem;line-height:1.7;color:var(--text-body)">Méga-campagnes Instagram et TikTok orchestrées par Monoprix. Effet « CA × 3 » documenté sur les références poussées par les influenceurs.</p>
+  <p style="font-size:.82rem;line-height:1.7;color:var(--text-body);margin-top:.8rem">Notre dispositif : renforts conseillères qualifiées sur les magasins clés, démos flash alignées sur les références poussées, push fidélité, reporting flash CA + transformation par référence.</p></div>
+  <div class="stat-grid reveal" style="margin-top:1rem">
+    <div class="stat"><div class="value">Méga</div><div class="label">Campagnes IG + TikTok</div></div>
+    <div class="stat"><div class="value">× 3</div><div class="label">Effet CA documenté</div></div>
+    <div class="stat"><div class="value">Renforts</div><div class="label">Conseillères qualifiées</div></div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 102 · §08.7 SYNERGIE INTER-UNIVERS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.7</div><h2>Synergie <em>inter-univers</em></h2><div class="subtitle">Faire dialoguer beauté, alimentaire, mode, maison</div></div>
+  <div class="grid-4 reveal">
+    <div class="card"><div class="num">01</div><h3>Beauté × Mode</h3><p>Conseil tenue + maquillage assorti · prestations événements.</p></div>
+    <div class="card"><div class="num">02</div><h3>Beauté × Maison</h3><p>Diffusion parfum d'intérieur · routine bien-être globale.</p></div>
+    <div class="card"><div class="num">03</div><h3>Beauté × Alim.</h3><p>Compléments alimentaires · routine in&out · cross-rayons.</p></div>
+    <div class="card"><div class="num">04</div><h3>Beauté × Enfant</h3><p>Soins enfants & ados · pitch parental · routine famille.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Quatre passerelles. Une logique : la cliente Monoprix vit toute l'enseigne, pas juste un rayon.</div>
+</section>
+
+<!-- ═══ SLIDE 103 · §08.8 CHAMP DES POSSIBLES ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.8</div><h2>Le champ <em>des possibles</em></h2><div class="subtitle">Trois pistes d'extension à étudier ensemble</div></div>
+  <div class="quote-block reveal"><p>Trois pistes. Trois ouvertures. Discutées en COPIL 2028.</p></div>
+  <div class="grid-3 reveal" style="margin-top:1.5rem">
+    <div class="card"><div class="num">01</div><h3>International</h3><p>Pénélope est implanté dans 16 sites France. Accompagner Monoprix dans une expansion internationale beauté ? Pilote possible 2028.</p></div>
+    <div class="card"><div class="num">02</div><h3>Espace Corner Luxe</h3><p>Un format corner premium dans les flagships, avec conseillère certifiée luxe. Diff vs sélectif.</p></div>
+    <div class="card"><div class="num">03</div><h3>Expertise B2B</h3><p>Animations entreprise, EVJF, événements partenaires. Nouvelle ligne de CA partagée.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Ces pistes sont des ouvertures — pas des engagements. À discuter à 12 mois.</div>
+</section>
+
+<!-- ═══ SLIDE 104 · §08.9 TRANSITION PROPRE ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 08.9</div><h2>Scénario <em>transition propre</em></h2><div class="subtitle">Notre engagement de continuité contractuelle</div></div>
+  <div class="grid-4 reveal">
+    <div class="phase"><div class="step">01</div><h4>Préavis</h4><p>Respect strict du préavis contractuel quelles que soient les circonstances.</p></div>
+    <div class="phase"><div class="step">02</div><h4>Handover</h4><p>Documentation parc, historiques formation, process — tout transmis.</p></div>
+    <div class="phase"><div class="step">03</div><h4>Continuité</h4><p>Mobilité interne conseillères · levée non-sollicitation possible.</p></div>
+    <div class="phase"><div class="step">04</div><h4>Clôture</h4><p>Dernière clôture comptable · restitution matériel · audit sortie.</p></div>
+  </div>
+  <div class="reveal" style="margin-top:1rem;text-align:center;font-size:.78rem;color:var(--text-muted)">Si un jour Monoprix change de prestataire, Pénélope quittera avec autant de rigueur qu'il est entré il y a 14 ans.</div>
+</section>
+
+<!-- ═══ SLIDE 105 · PROMESSE TRANSFORMATION ═══ -->
+<section class="dark-section">
+  <div class="full-width-quote reveal"><p>En 2028, votre parc beauté aura été rénové à 80 %, votre offre renouvelée à 60 %, vos prix recalibrés à 100 %. Nous serons là à chaque étape, équipe par équipe, magasin par magasin.</p><div class="attribution">Promesse de transformation · Pénélope 2027</div></div>
+</section>
+
+<!-- ═══ SLIDE 106 · §09.1 RÉCAPITULATIF 11 ENGAGEMENTS ═══ -->
+<section class="content-section" id="cloture">
+  <div class="section-header reveal"><div class="tag">§ 09.1</div><h2>Récapitulatif des <em>11 engagements chiffrés</em></h2><div class="subtitle">Nos onze engagements, validés en COPIL avant remise</div></div>
+  <div class="engagement-grid reveal">
+    <div class="engagement-item"><div class="eng-num">01</div><div class="eng-text">Différentiel CA mag animé vs non-animé — au-dessus du seuil minimum CDC +4 pts</div></div>
+    <div class="engagement-item"><div class="eng-num">02</div><div class="eng-text">Reporting Top 30 livré le 10 du mois M+1 (engagement CDC)</div></div>
+    <div class="engagement-item"><div class="eng-num">03</div><div class="eng-text">Visite RS hebdomadaire des 30 magasins prioritaires (engagement CDC)</div></div>
+    <div class="engagement-item"><div class="eng-num">04</div><div class="eng-text">Budget séminaire annuel ≤ 65 K€ TTC (enveloppe CDC)</div></div>
+    <div class="engagement-item"><div class="eng-num">05</div><div class="eng-text">Taux de présence cible 2027 — à valider en COPIL avant remise</div></div>
+    <div class="engagement-item"><div class="eng-num">06</div><div class="eng-text">Délai moyen de remplacement engagé — à valider en COPIL avant remise</div></div>
+    <div class="engagement-item"><div class="eng-num">07</div><div class="eng-text">Turnover annuel cible — à valider en COPIL avant remise</div></div>
+    <div class="engagement-item"><div class="eng-num">08</div><div class="eng-text">Taux d'enrôlement fidélité par interaction qualifiée — à valider en COPIL</div></div>
+    <div class="engagement-item"><div class="eng-num">09</div><div class="eng-text">Note visite mystère cible — à co-construire grille avant remise</div></div>
+    <div class="engagement-item"><div class="eng-num">10</div><div class="eng-text">Heures formation par conseillère / an — à valider en COPIL</div></div>
+    <div class="engagement-item"><div class="eng-num">11</div><div class="eng-text">NPS cliente cible — à valider en COPIL après baseline 2026</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1.5rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Tous les engagements chiffrés sont validés en COPIL Pénélope avant remise du dossier. Aucun chiffre n'est inscrit sans validation directe de notre direction commerciale et opérationnelle.</div>
+</section>
+
+<!-- ═══ SLIDE 107 · §09.2 DIX QUESTIONS ═══ -->
+<section class="content-section">
+  <div class="section-header reveal"><div class="tag">§ 09.2</div><h2>Dix questions à clarifier <em>avec Monoprix</em></h2><div class="subtitle">Dix questions ouvertes, pour caler la copie finale</div></div>
+  <div class="engagement-grid reveal">
+    <div class="engagement-item"><div class="eng-num">01</div><div class="eng-text">Périmètre Top 30 final — liste arrêtée des magasins prioritaires ?</div></div>
+    <div class="engagement-item"><div class="eng-num">02</div><div class="eng-text">Grille visite mystère — co-construction du référentiel critères ?</div></div>
+    <div class="engagement-item"><div class="eng-num">03</div><div class="eng-text">Mécanisme pénalités — plafond annuel négocié ? Plan correctif avant pénalité ?</div></div>
+    <div class="engagement-item"><div class="eng-num">04</div><div class="eng-text">Format reporting J+10 — préférences DSI Monoprix (Excel, BI dédié, NeoGrid) ?</div></div>
+    <div class="engagement-item"><div class="eng-num">05</div><div class="eng-text">Accès conseillères monoprix.fr et app Monoprix — pilote possible ?</div></div>
+    <div class="engagement-item"><div class="eng-num">06</div><div class="eng-text">Données fidélité — confirmation Pénélope = opérateur sans accès secondaire ?</div></div>
+    <div class="engagement-item"><div class="eng-num">07</div><div class="eng-text">Calendrier formation continue 2027 — alignement plans launch Monoprix ?</div></div>
+    <div class="engagement-item"><div class="eng-num">08</div><div class="eng-text">Roadmap prestations payantes — magasins pilotes T2 2027 à choisir ?</div></div>
+    <div class="engagement-item"><div class="eng-num">09</div><div class="eng-text">Innovations 2027 (miroir, RA, app tablette) — sponsoring budget pilote ?</div></div>
+    <div class="engagement-item"><div class="eng-num">10</div><div class="eng-text">COPIL semestriel — participants côté direction Monoprix ?</div></div>
+  </div>
+  <div class="reveal" style="margin-top:1.5rem;text-align:center;font-size:.72rem;color:var(--text-muted)">Ces questions sont des invitations au dialogue avant signature — pas des conditions suspensives.</div>
+</section>
+
+<!-- ═══ SLIDE 108 · MERCI ═══ -->
+<section class="dark-section" style="text-align:center;padding:12vh 8vw">
+  <div class="reveal">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--white);margin-bottom:1.5rem">Merci.</div>
+    <p style="font-size:1rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:500px;margin:0 auto 3rem">Pour avoir lu jusqu'ici. Pour la confiance de ces 14 années. Pour celles qui suivent.</p>
+    <div style="display:flex;justify-content:center;gap:4rem;flex-wrap:wrap">
+      <div><div style="font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.4rem">Contact</div><div style="font-size:.78rem;color:rgba(255,255,255,.5)">FMS France · Pénélop'</div></div>
+      <div><div style="font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.4rem">Lieu</div><div style="font-size:.78rem;color:rgba(255,255,255,.5)">Remise via NeoGrid</div></div>
+      <div><div style="font-size:.55rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.4rem">Date de remise</div><div style="font-size:.78rem;color:rgba(255,255,255,.5)">29 mai 2026</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ JAVASCRIPT ═══ -->
+<script>
+const progress=document.getElementById('progress'),sections=document.querySelectorAll('.section,section,.hero-band'),dots=document.getElementById('page-indicator');
+window.addEventListener('scroll',()=>{
+  let h=document.documentElement.scrollHeight-window.innerHeight,s=window.scrollY;
+  progress.style.width=(s/h*100)+'%';
+  document.querySelector('nav').classList.toggle('scrolled',s>100);
+});
+const obs=new IntersectionObserver(e=>{e.forEach(s=>{if(s.isIntersecting)s.target.classList.add('visible')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+</script>
+</body>
+</html>
