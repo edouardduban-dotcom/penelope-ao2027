@@ -127,6 +127,11 @@ body{font-family:'Inter',sans-serif;background:#1a1a1a;display:flex;flex-directi
 .ambition-item .anum{font-family:'Playfair Display',serif;font-size:11pt;font-weight:700;color:var(--gold);margin-bottom:1mm}
 .ambition-item h4{font-family:'Playfair Display',serif;font-size:8pt;font-weight:700;color:var(--dark);margin-bottom:1mm;line-height:1.2}
 .ambition-item ul{font-size:7pt;color:var(--body);line-height:1.45;padding-left:3mm;margin:0}
+
+/* DEAD SPACE FIX — stretch content to fill page */
+.page-light > div:first-child:not(.split):not(.quote-block):not(.divider-inner){display:flex;flex-direction:column;justify-content:space-between;padding-bottom:12mm !important}
+.page-dark > div:first-child:not(.divider-inner):not(.quote-block){display:flex;flex-direction:column;justify-content:space-between}
+.page-deep > div:first-child:not(.divider-inner):not(.quote-block){display:flex;flex-direction:column;justify-content:space-between}
 </style>
 </head>
 <body>
@@ -1426,9 +1431,17 @@ body{font-family:'Inter',sans-serif;background:#1a1a1a;display:flex;flex-directi
 <!-- ==================== SLIDE 50 — JUNIOR STANDARD ==================== -->
 <div class="page page-light">
   <div style="padding:14mm 20mm 8mm">
-    <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — JUNIOR STANDARD</div>
-    <div class="heading" style="font-size:20pt">Junior Standard.</div>
-    <div class="body-text">Le profil Junior-standard permet d'intégrer des candidats(es) à fort potentiel issu(e)s de la vente, de l'accueil, de l'événementiel ou de la relation client. Leur valeur ajoutée réside dans leur posture de service, leur capacité à créer rapidement le contact et leur appétence pour l'univers beauté.</div>
+    <div>
+      <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — JUNIOR STANDARD</div>
+      <div class="heading" style="font-size:24pt">Junior <em>Standard.</em></div>
+      <div style="font-size:8.5pt;font-weight:700;color:var(--b);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4mm">Profil d'entrée · Fort potentiel</div>
+    </div>
+    <div class="body-text" style="margin-bottom:8mm">Le profil Junior-standard permet d'intégrer des candidats(es) à fort potentiel issu(e)s de la vente, de l'accueil, de l'événementiel ou de la relation client. Leur valeur ajoutée réside dans leur posture de service, leur capacité à créer rapidement le contact et leur appétence pour l'univers beauté.</div>
+    <div class="card-grid card-grid-3" style="margin-top:auto">
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Posture de service</h3><p>Créer le contact naturellement.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Appétence beauté</h3><p>Curiosité et motivation pour l'univers beauté.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Polyvalence</h3><p>Vente, accueil, événementiel, relation client.</p></div>
+    </div>
   </div>
   <div class="footer"><span>50 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
 </div>
@@ -1436,9 +1449,17 @@ body{font-family:'Inter',sans-serif;background:#1a1a1a;display:flex;flex-directi
 <!-- ==================== SLIDE 51 — CONFIRME BEAUTE ==================== -->
 <div class="page page-light">
   <div style="padding:14mm 20mm 8mm">
-    <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — CONFIRME BEAUTÉ</div>
-    <div class="heading" style="font-size:20pt">Confirmé Beauté.</div>
-    <div class="body-text">Le profil Confirmé beauté correspond à une conseillère disposant déjà d'une expérience concrète dans la vente ou l'animation beauté. Elle sait traduire un besoin client en recommandation produit, proposer un maquillage flash, valoriser les marques présentes en magasin et contribuer à la dynamique commerciale du rayon.</div>
+    <div>
+      <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — CONFIRMÉ BEAUTÉ</div>
+      <div class="heading" style="font-size:24pt">Confirmé <em>Beauté.</em></div>
+      <div style="font-size:8.5pt;font-weight:700;color:var(--b);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4mm">Expérience terrain · Valeur ajoutée immédiate</div>
+    </div>
+    <div class="body-text" style="margin-bottom:8mm">Le profil Confirmé beauté correspond à une conseillère disposant déjà d'une expérience concrète dans la vente ou l'animation beauté. Elle sait traduire un besoin client en recommandation produit, proposer un maquillage flash, valoriser les marques présentes en magasin et contribuer à la dynamique commerciale du rayon.</div>
+    <div class="card-grid card-grid-3" style="margin-top:auto">
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Recommandation produit</h3><p>Besoin client → conseil ciblé.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Maquillage flash</h3><p>Démonstration rapide et impactante.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Dynamique rayon</h3><p>Valoriser les marques et l'attractivité.</p></div>
+    </div>
   </div>
   <div class="footer"><span>51 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
 </div>
@@ -1446,9 +1467,17 @@ body{font-family:'Inter',sans-serif;background:#1a1a1a;display:flex;flex-directi
 <!-- ==================== SLIDE 52 — EXPERT BEAUTE ==================== -->
 <div class="page page-light">
   <div style="padding:14mm 20mm 8mm">
-    <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — EXPERT BEAUTÉ</div>
-    <div class="heading" style="font-size:20pt">Expert Beauté.</div>
-    <div class="body-text">Le profil Expert beauté apporte une dimension plus expérientielle à la prestation. Au-delà du conseil produit, il permet de créer un moment beauté qualitatif, de renforcer l'attractivité du rayon et de valoriser les prestations proposées par Monoprix. Ces profils sont particulièrement adaptés aux magasins à fort potentiel et aux corners premium.</div>
+    <div>
+      <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — EXPERT BEAUTÉ</div>
+      <div class="heading" style="font-size:24pt">Expert <em>Beauté.</em></div>
+      <div style="font-size:8.5pt;font-weight:700;color:var(--b);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4mm">Dimension expérientielle · Magasins premium</div>
+    </div>
+    <div class="body-text" style="margin-bottom:8mm">Le profil Expert beauté apporte une dimension plus expérientielle à la prestation. Au-delà du conseil produit, il permet de créer un moment beauté qualitatif, de renforcer l'attractivité du rayon et de valoriser les prestations proposées par Monoprix. Ces profils sont particulièrement adaptés aux magasins à fort potentiel et aux corners premium.</div>
+    <div class="card-grid card-grid-3" style="margin-top:auto">
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Moment beauté</h3><p>Créer une expérience qualitative.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Attractivité rayon</h3><p>Renforcer le pouvoir de séduction du corner.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Corners premium</h3><p>Adapté aux magasins à fort potentiel.</p></div>
+    </div>
   </div>
   <div class="footer"><span>52 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
 </div>
@@ -1456,9 +1485,17 @@ body{font-family:'Inter',sans-serif;background:#1a1a1a;display:flex;flex-directi
 <!-- ==================== SLIDE 53 — LUXE EXPERT MARQUE ==================== -->
 <div class="page page-light">
   <div style="padding:14mm 20mm 8mm">
-    <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — LUXE EXPERT MARQUE</div>
-    <div class="heading" style="font-size:20pt">Luxe Expert Marque.</div>
-    <div class="body-text">Le profil Luxe-expert-marque est mobilisé lorsque le contexte magasin, la typologie de clientèle ou l'enjeu commercial nécessite une incarnation renforcée de l'expertise beauté. Il apporte les codes de la beauté sélective et du retail premium tout en les adaptant à l'ADN Monoprix : proximité, accessibilité et lifestyle.</div>
+    <div>
+      <div class="overline">§ 05.1 · PROFIL TYPE CONSEILLÈRE — LUXE EXPERT MARQUE</div>
+      <div class="heading" style="font-size:24pt">Luxe <em>Expert Marque.</em></div>
+      <div style="font-size:8.5pt;font-weight:700;color:var(--b);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4mm">Codes sélectifs · Incarnation renforcée</div>
+    </div>
+    <div class="body-text" style="margin-bottom:8mm">Le profil Luxe-expert-marque est mobilisé lorsque le contexte magasin, la typologie de clientèle ou l'enjeu commercial nécessite une incarnation renforcée de l'expertise beauté. Il apporte les codes de la beauté sélective et du retail premium tout en les adaptant à l'ADN Monoprix : proximité, accessibilité et lifestyle.</div>
+    <div class="card-grid card-grid-3" style="margin-top:auto">
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Beauté sélective</h3><p>Les codes du retail premium.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>ADN Monoprix</h3><p>Proximité, accessibilité, lifestyle.</p></div>
+      <div class="card" style="text-align:center;border-top:2.5px solid var(--gold)"><h3>Contextualisé</h3><p>Adapté à la typologie clientèle et enjeu magasin.</p></div>
+    </div>
   </div>
   <div class="footer"><span>53 sur 107</span><span>PÉNÉLOPE × MONOPRIX · AO 2027</span></div>
 </div>
